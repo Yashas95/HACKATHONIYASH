@@ -9,6 +9,8 @@ export interface FrameOptions {
   minScore: number
   /** Run detector and pose on this same frame (pre-analysis) instead of alternating. */
   both?: boolean
+  /** 3×2 tile grid for wide shots with small, distant people (pre-analysis only). */
+  grid?: boolean
 }
 
 /**
@@ -61,10 +63,10 @@ export class VisionEngine {
   }
 
   /** Copy the current frame into `work` (display space). Returns false if the source has no frame. */
-  capture(src: HTMLVideoElement, mirrored: boolean): boolean {
+  capture(src: HTMLVideoElement, mirrored: boolean, maxW = 960): boolean {
     const vw = src.videoWidth, vh = src.videoHeight
     if (!vw || !vh) return false
-    const scale = Math.min(1, 960 / vw)
+    const scale = Math.min(1, maxW / vw)
     const W = Math.round(vw * scale), H = Math.round(vh * scale)
     if (this.work.width !== W || this.work.height !== H) { this.work.width = W; this.work.height = H }
     this.ctx.save()
@@ -84,7 +86,7 @@ export class VisionEngine {
       this.lastTs = ts
       const id = this.nextId++
       const p = new Promise<Detection[]>((res, rej) => this.pending.set(id, { res, rej }))
-      this.worker.postMessage({ type: 'frame', id, bitmap, ts, crowdBoost: opt.crowdBoost, minScore: opt.minScore, both: !!opt.both }, [bitmap])
+      this.worker.postMessage({ type: 'frame', id, bitmap, ts, crowdBoost: opt.crowdBoost, minScore: opt.minScore, both: !!opt.both, grid: !!opt.grid }, [bitmap])
       return await p
     } finally {
       this.busy = false

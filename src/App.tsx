@@ -11,12 +11,14 @@ import { Stage } from './components/Stage'
 import { IntelPanel } from './components/IntelPanel'
 import { ControlStrip } from './components/ControlStrip'
 import { IncidentModal } from './components/IncidentModal'
+import { Overview } from './components/Overview'
+import { Rail, type View } from './components/Rail'
 
 const PREFS = 'edgeguard.prefs.v2'
 const initial: Settings = (() => {
   const base: Settings = {
     preset: PRESETS[0], language: 'en', audio: true, quality: 'accurate', crowdBoost: false, singlePerson: false,
-    mirrored: true, minScore: 0.4, breachConfirmMs: 700, unresolvedMs: 2500, warningDistance: 0.06, preAnalyse: true,
+    mirrored: true, minScore: 0.4, breachConfirmMs: 700, unresolvedMs: 2500, warningDistance: 0.06, preAnalyse: true, stormMode: true,
   }
   try {
     const saved = JSON.parse(localStorage.getItem(PREFS) ?? '{}')
@@ -37,6 +39,9 @@ export default function App() {
   const [openId, setOpenId] = useState<string | null>(null)
   const [rate, setRateState] = useState(1)
   const [toast, setToast] = useState<string | null>(null)
+  const [view, setView] = useState<View>('overview')
+  // A scene chosen on the landing page before the models finish loading waits for them.
+  const [pending, setPending] = useState<null | { kind: 'video'; preset: EnvironmentPreset } | { kind: 'webcam' }>(null)
   const incidents = useIncidents()
 
   useEffect(() => monitor.subscribe(setSnap), [])
@@ -136,12 +141,36 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKey)
   }, [snap.source, settings.language, settings.audio, set])
 
+  useEffect(() => {
+    if (!pending || snap.engine !== 'ready') return
+    setPending(null)
+    if (pending.kind === 'video') pickVideo(pending.preset); else pickWebcam()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pending, snap.engine])
+
   const open = incidents.find((i) => i.id === openId)
 
+  const rail = <Rail view={view} onNav={setView} engineOk={snap.engine === 'ready'} />
+  const modal = <AnimatePresence>{open && <IncidentModal key={open.id} incident={open} onClose={() => setOpenId(null)} />}</AnimatePresence>
+  if (view === 'overview') {
+    return (
+      <div className="flex h-full">
+        {rail}
+        <Overview engine={snap.engine} engineNote={snap.engineNote} voice={voice} incidents={incidents} available={available}
+          onScene={(p) => { monitor.voice.unlock(); set({ preset: p }); setView('console'); setPending({ kind: 'video', preset: p }) }}
+          onWebcam={() => { monitor.voice.unlock(); setView('console'); setPending({ kind: 'webcam' }) }}
+          onIncident={(i) => setOpenId(i.id)} />
+        {modal}
+      </div>
+    )
+  }
+
   return (
-    <div className={`flex h-full flex-col theme-${settings.preset.themeVariant}`}>
+    <div className="flex h-full">
+      {rail}
+      <div className="flex min-w-0 flex-1 flex-col">
       <TopBar snap={snap} voice={voice} preset={settings.preset} />
-      <main className="flex min-h-0 flex-1 gap-3 p-3">
+      <main className="flex min-h-0 flex-1">
         <Stage
           monitor={monitor} snap={snap} voice={voice} preset={settings.preset} available={available}
           calibrating={calibrating} drawMode={drawMode} onZoneEdited={zoneEdited} onDrawDone={drawDone}
@@ -155,9 +184,10 @@ export default function App() {
         onStart={start} onStop={stop} onPreset={changePreset} onSwitchCamera={async () => { if (!(await monitor.switchCamera())) flash('Only one camera available') }}
         onRecord={record} onExport={exportClip} rate={rate} setRate={setRate}
       />
-      <AnimatePresence>{open && <IncidentModal key={open.id} incident={open} onClose={() => setOpenId(null)} />}</AnimatePresence>
+      </div>
+      {modal}
       <AnimatePresence>
-        {toast && <div className="fixed bottom-20 left-1/2 z-50 -translate-x-1/2 rounded-lg border border-cyan/40 bg-surface px-4 py-2 text-[13px] shadow-xl">{toast}</div>}
+        {toast && <div className="mono fixed bottom-20 left-1/2 z-50 -translate-x-1/2 border border-line-2 bg-bg px-4 py-2 text-[11.5px] tracking-wide">{toast}</div>}
       </AnimatePresence>
     </div>
   )

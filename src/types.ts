@@ -70,7 +70,7 @@ export interface Incident {
 }
 
 export interface EnvironmentPreset {
-  id: 'beach' | 'metro' | 'backwater'
+  id: 'beach' | 'beach2' | 'metro' | 'backwater' | 'promenade'
   name: string
   location: string
   cameraName: string

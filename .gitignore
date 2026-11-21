@@ -29,3 +29,6 @@ dist-ssr
 public/models
 public/mediapipe
 
+
+# over GitHub 100 MB limit, copy manually
+public/videos/beach-2.mp4

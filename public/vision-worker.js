@@ -96,6 +96,17 @@ function detectBoxes(x0, x1, y0 = 0, y1 = 1) {
 // Two overlapping half-frame tiles along the long side, so small people get ~2x resolution.
 // Boxes touching an internal seam are people cut in half by the tile; the full-frame
 // pass (or the other tile) covers them, so drop them instead of creating a phantom.
+// 3×2 overlapping grid for wide, high-res frames; seam-touching boxes are dropped.
+function grid() {
+  const xs = [[0, 0.38], [0.31, 0.69], [0.62, 1]], ys = [[0, 0.58], [0.42, 1]], e = 0.008
+  let out = []
+  for (const [x0, x1] of xs) for (const [y0, y1] of ys) {
+    out = out.concat(detectBoxes(x0, x1, y0, y1).filter((d) =>
+      (x0 === 0 || d.box.x > x0 + e) && (x1 === 1 || d.box.x + d.box.w < x1 - e) &&
+      (y0 === 0 || d.box.y > y0 + e) && (y1 === 1 || d.box.y + d.box.h < y1 - e)))
+  }
+  return out
+}
 function tiled() {
   const e = 0.012
   return full.width >= full.height
@@ -138,7 +149,8 @@ self.onmessage = async (e) => {
       const runPose = msg.both || !runDet
       if (runDet) {
         let b = detectBoxes(0, 1)
-        if (msg.crowdBoost) b = b.concat(tiled())
+        if (msg.grid) b = b.concat(grid())
+        else if (msg.crowdBoost) b = b.concat(tiled())
         lastBoxes = nms(b)
       }
       if (runPose) {

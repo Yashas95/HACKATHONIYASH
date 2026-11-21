@@ -1,92 +1,133 @@
-# EDGEGUARD AI: intelligent safety before the accident
+# EdgeGuard AI
 
-A real-time visual safety monitor:
-1. Detects people in a camera feed or recorded footage.
-2. Tracks each person and works out whether their feet enter a configurable danger zone (shoreline, platform edge, jetty edge).
-3. Speaks a personalised warning in English or Malayalam, using the clothing colour it sees ("Attention, person in the red shirt…").
-4. Escalates unresolved breaches to an operator incident panel with a simulated SOS preview.
+**A camera-based safety monitor for beaches, metro platforms and backwater jetties.** It watches a camera feed, finds the people in it, and acts when someone crosses the safety line a lifeguard has drawn:
+- warns that person by voice, naming what they're wearing, in English or Malayalam
+- opens an incident for the lifeguard if they don't move back
 
-> Research and demonstration prototype, built for HackaThoni 2026, Alappuzha. It is **not** a certified safety system. It does not detect drowning and never contacts emergency services.
+Built for HackaThoni 2026, Alappuzha. Voice by **Sarvam AI** (Bulbul text-to-speech).
 
-## Quick start
+> Research prototype. It is not a certified safety system, it does not detect drowning, and it never contacts emergency services on its own. A person always makes the call.
+
+---
+
+## 1. What it does
+
+| Step | What happens |
+|---|---|
+| **See** | On-device AI (MediaPipe) finds every person and their body pose, frame by frame. |
+| **Check** | Each person's feet are tested against the restricted zone behind the **yellow safety line**. |
+| **Warn** | Crossing in storm mode turns the person **red**, and a spoken warning plays: *"Attention, person in the red shirt. Storm warning: the sea is closed. Please step back behind the yellow line."* |
+| **Escalate** | If they stay inside, an incident opens for the lifeguard to acknowledge, resolve, or open a simulated SOS preview. |
+
+Person states on screen: **Safe** (blue) → **Near edge** (amber) → **In zone** (red, voice warning) → **Unresolved** (red, incident) → **Cleared** (green).
+
+---
+
+## 2. For the lifeguard: setting the line
+
+The lifeguard decides where the danger starts. Nothing is hard-coded.
+
+1. Open a camera from **Overview**.
+2. Click **Calibrate zone**. The yellow safety line and its corner handles appear on the video.
+3. **Drag the handles** to move the line. Put it at the waterline, or further back in rough weather to leave a buffer.
+4. To draw a new shape, click **Redraw**, click the corner points, then double-click to finish. **Default** restores the original line.
+5. Click **Done**. The line is saved for that camera and is used for every frame from then on.
+
+### Storm mode: is the water open?
+The button in the bottom bar is the lifeguard's switch:
+
+| Mode | Water | When someone crosses the yellow line |
+|---|---|---|
+| **Storm · water closed** (default) | Entry forbidden | Person turns **red** after 0.7 s, voice warning plays, and an incident opens if they stay |
+| **Normal · advisory** | Open | Person turns **amber** only. No alarm and no voice. The line is a guide. |
+
+### Fine-tuning (⚙ settings)
+- **Breach confirmation**: how long the feet must stay over the line before turning red. Default 0.7 s.
+- **Escalate after**: time in the zone before an incident opens. Default 2.5 s.
+- **Caution band**: how close to the line counts as "near edge".
+- **Voice language**: EN or മലയാളം. Mute with the speaker button.
+
+Keyboard: `Space` pause · `C` calibrate · `L` language · `M` mute · `Esc` close.
+
+---
+
+## 3. Cameras in this demo
+
+| Camera | File | What it shows |
+|---|---|---|
+| Beach Safety (CAM-01) | `public/videos/beach.mp4` | Storm beach: a man in red walks into the surf and turns red, a warning plays, then he walks back and is cleared |
+| Beach Safety · Wide (CAM-02) | `public/videos/beach-2.mp4` | Wide elevated beach view, played from 0:17.5. People walking down to the water cross the yellow line and turn red |
+| Platform Safety (CAM-04) | `public/videos/metro.mp4` | A man crosses the platform's yellow line |
+| Backwater Jetty (CAM-07) | `public/videos/backwater.mp4` | Real Alappuzha jetty footage (trimmed to 15.6–18.3 s to skip a camera zoom) |
+| Lakeside Promenade (CAM-09) | `public/videos/backwater-2.mp4` | Real footage. No one approaches the water, so it shows the system **not** raising false alarms |
+
+> `beach-2.mp4` (161 MB) is larger than GitHub's 100 MB file limit, so it isn't in the repository. Copy it into `public/videos/` yourself.
+
+You can also use the laptop camera, or open or drag in any video file.
+
+**Pre-analysis.** Recorded clips are analysed once before playback: the real detector runs on every 0.1 s frame (0.2 s for clips longer than 20 s). Playback is then smooth on any laptop, and the results are saved, so later loads are instant. Tracking, the line check, voice and incidents all still run during playback.
+**Before presenting:** open each camera once on the demo laptop so its analysis is saved.
+
+---
+
+## 4. Setup
 
 ```powershell
-npm install        # also copies the MediaPipe runtime and downloads the models into public/
-npm run dev        # open http://localhost:5173
+npm install        # installs packages, copies the AI runtime, downloads the models
+npm run dev        # http://localhost:5173
 ```
+Use Chrome or Edge. Everything runs on the laptop; after setup, only Sarvam voice calls use the internet, and generated clips are cached in `.tts-cache/` for offline reuse.
 
-Use Chrome or Edge on a laptop with a GPU. Everything runs locally. Once `npm install` has finished, no internet is needed except for Sarvam voice calls that aren't cached yet.
-
-### Sarvam voice (English + Malayalam)
-Create `.env` in the project root:
+### Sarvam voice
+Copy `.env.example` to `.env` and add your key:
 ```
 SARVAM_API_KEY=your_key_here
-# optional
-SARVAM_MODEL=bulbul:v3
+SARVAM_MODEL=bulbul:v3          # Bulbul v3 has Malayalam voices
 SARVAM_SPEAKER_EN=pooja
 SARVAM_SPEAKER_ML=pooja
 ```
-The key is read only by the Vite dev server's `/api/tts` proxy (`server/tts-proxy.ts`) and is never sent to the browser. `bulbul:v3` is used because Sarvam's v4 voices have no Malayalam speaker. Each generated clip is cached in `.tts-cache/`, so a warning that has played once also works offline.
-Without a key the app falls back to the browser's built-in speech and says so in the top bar.
+The key stays on the local server (`server/tts-proxy.ts`) and never reaches the browser. Without a key, the browser's own voice is used and the app says so.
 
-## Footage
+### Deploy to Vercel
+1. On vercel.com: **Add New → Project**, then import this GitHub repo. The settings come from `vercel.json`.
+2. Under **Settings → Environment Variables**, add `SARVAM_API_KEY` (and optionally `SARVAM_MODEL`, `SARVAM_SPEAKER_EN`, `SARVAM_SPEAKER_ML`), then redeploy.
+3. Voice warnings are served by the serverless function `api/tts.ts`. The browser never sees the key.
 
-| Scene | File | Notes |
-|---|---|---|
-| Beach Safety | `public/videos/beach.mp4` | Storm beach (Veo) |
-| Platform Safety | `public/videos/metro.mp4` | Kochi Metro platform in a storm (Veo) |
-| Backwater Jetty | `public/videos/backwater.mp4` | Real jetty footage, trimmed in-app to 15.6–18.3 s to skip a hand-held zoom (`trim` in `src/lib/presets.ts`) |
+Notes:
+- `beach-2.mp4` isn't in the repo, so that camera shows "No footage" on the hosted site.
+- Clip analysis is saved per browser, so open each camera once on the presenting machine.
 
-You can also load any clip with **Open any video file…** or by dragging it onto the stage. Prompts for generating more clips are in [VIDEO_PROMPTS.md](VIDEO_PROMPTS.md).
+---
 
-**Pre-analysis.** Recorded clips are analysed before playback by default. The real detector and pose model run on every 0.1 s frame, and the results are saved in the browser, so each clip is analysed once and then starts instantly. Tracking, colour, zone logic, voice and incidents still run live during playback, and the HUD shows "PRE-ANALYSED AI DETECTIONS". Turn it off in **Settings** to run inference live on each frame instead.
+## 5. Judge demo (about 2 minutes)
+1. **Overview** shows the camera wall, KPIs and recent incidents.
+2. Open **Beach Safety**. The man in red crosses the yellow line, turns red, and hears the storm warning. The red alert bar appears. When he walks back it turns green ("cleared").
+3. Click the incident and **Acknowledge** it, then open the **SOS preview**, which is simulated and sends nothing.
+4. Switch to **മലയാളം**: the same warning plays in Malayalam.
+5. **Calibrate zone**: drag the yellow line live to show the lifeguard sets the border.
+6. Toggle **Normal · advisory**: crossing now only shows amber. Toggle back to **Storm**.
+7. Open **Beach · Wide**, **Platform** and **Backwater** to show the same engine at other sites.
+8. **Export annotated clip** saves an MP4 with overlays and voice.
 
-> Before presenting, open each scene once on the demo laptop so its analysis is saved.
+---
 
-## How it works
-
+## 6. How it works
 ```
-frame → Person detector (EfficientDet-Lite2, COCO "person") + Pose Landmarker (33 landmarks)
-      → pose attached to the person box it overlaps → temporary IDs (P-001…) via IoU + motion tracker
-      → foot points (ankles/heels/toes, or box base) tested against the zone polygon
-      → per-person state: SAFE → CAUTION → BREACH (0.7 s inside) → UNRESOLVED (2.5 s) → CLEARED
-      → torso colour sampled from shoulders/hips, voted over time (skin ignored; "unknown" if unclear)
-      → warning text → Sarvam TTS → one announcement at a time, 10 s per-person cooldown
-      → incident (localStorage) → acknowledge / resolve / dismiss / simulated SOS preview
+frame → person detector (EfficientDet-Lite2) + pose (33 body points, MediaPipe)
+      → temporary IDs (P-001…) → feet tested against the zone behind the yellow line
+      → Safe / Near edge / In zone / Unresolved / Cleared (with confirmation delays)
+      → shirt colour from the torso, voted over time ("unknown" rather than a guess)
+      → warning text → Sarvam TTS → incident log (browser storage)
 ```
+- No face recognition, no identity, no video stored.
+- Losing sight of a person is reported as **tracking lost**, never as drowning.
+- On-screen numbers (FPS, alert latency, counts) are measured, not claimed.
 
-- Inference runs in a Web Worker (`public/vision-worker.js`), so video and overlays stay smooth.
-- All coordinates are normalised, and a mirrored webcam is flipped before any zone maths.
-- A weak detector box is kept only when the pose model independently confirms a body in it.
-- Tiled detection gives small or distant people about 2× the resolution. Boxes cut by a tile seam are discarded.
-- "Tracking lost" is reported as exactly that, never as drowning.
-
-## Judge demo (≈2 minutes)
-1. **Start monitoring**, then pick **Beach Safety**. The man in red walks to the water, turns amber, then red, and you hear "Attention, person in the red shirt…". The incident panel lights up, and the breach is **cleared** when he walks back.
-2. Click the incident: **Acknowledge**, then **Open SOS preview**. Point out "simulation only, nothing is sent".
-3. Switch to **മലയാളം** and replay. The same warning now plays in Malayalam.
-4. **Platform Safety**: the man in green crosses the yellow line and gets a platform-specific warning. The woman in red stays SAFE.
-5. **Backwater Jetty**: real Alappuzha footage of a man fishing at the jetty edge.
-6. **Calibrate zone**: drag the red polygon live. Zones are saved per scene.
-7. **Export annotated clip** saves an MP4 (two passes) with overlays and the voice warnings, as a backup.
-
-Shortcuts: `Space` pause · `C` calibrate · `L` language · `M` mute · `Esc` close.
-
-## Project layout
-```
-server/tts-proxy.ts        Sarvam proxy + disk cache (Vite middleware)
-public/vision-worker.js    MediaPipe inference worker
-src/lib/monitor.ts         Orchestrator: sources, pre-analysis, loop, events, export
-src/lib/tracker.ts         Temporary-ID tracker
-src/lib/safety.ts          Zone state machine
-src/lib/color.ts           Clothing-colour estimate
-src/lib/voice.ts           Announcement queue, Sarvam + fallback
-src/lib/presets.ts         Scenes, zones, EN/ML warning text
-src/components/*           Command-centre UI
-```
-
-## Limits (stated honestly)
-- Danger zones are a camera-view approximation, not a real-world distance.
-- Colour is approximate and refuses to guess in poor light or with mixed colours.
-- IDs are temporary and only valid within a session. There is no face or identity recognition, and no video is stored.
-- FPS, latency, event counts and acknowledgements on screen are measured values. No accuracy figure is claimed.
+| File | Role |
+|---|---|
+| `server/tts-proxy.ts` | Sarvam proxy and voice cache |
+| `public/vision-worker.js` | AI inference (runs off the main thread) |
+| `src/lib/monitor.ts` | Feed, pre-analysis, events, export |
+| `src/lib/safety.ts` | Line-crossing state machine |
+| `src/lib/presets.ts` | Cameras, default lines, EN/ML warning text |
+| `src/components/` | Overview and camera console UI |

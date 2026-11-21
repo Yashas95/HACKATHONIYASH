@@ -27,13 +27,13 @@ export const PRESETS: EnvironmentPreset[] = [
     webcamZone: [{ x: 0.62, y: 0.5 }, { x: 1, y: 0.5 }, { x: 1, y: 1 }, { x: 0.62, y: 1 }],
     warningMessages: {
       en: {
-        person: (c) => `Attention, person in the ${c} shirt. Please step back from the water's edge.`,
-        generic: 'Attention, person near the safety boundary. Please step back from the water\'s edge.',
+        person: (c) => `Attention, person in the ${c} shirt. Storm warning: the sea is closed. Please step back behind the yellow line.`,
+        generic: 'Attention, please. Storm warning: the sea is closed. Please step back behind the yellow line.',
         group: 'Attention everyone near the shoreline. Please step back from the restricted area.',
       },
       ml: {
-        person: (c) => `ശ്രദ്ധിക്കുക, ${c} ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി കടലിൽ നിന്ന് പിന്നോട്ട് മാറുക.`,
-        generic: 'ശ്രദ്ധിക്കുക, സുരക്ഷാ രേഖയ്ക്ക് സമീപമുള്ള വ്യക്തി. ദയവായി കടലിൽ നിന്ന് പിന്നോട്ട് മാറുക.',
+        person: (c) => `ശ്രദ്ധിക്കുക, ${c} ഷർട്ട് ധരിച്ച വ്യക്തി. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക.`,
+        generic: 'ശ്രദ്ധിക്കുക. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക.',
         group: 'ശ്രദ്ധിക്കുക, എല്ലാവരും ദയവായി അപകടമേഖലയിൽ നിന്ന് പിന്നോട്ട് മാറുക.',
       },
     },
@@ -87,6 +87,43 @@ export const PRESETS: EnvironmentPreset[] = [
     },
   },
 ]
+
+PRESETS.splice(1, 0, {
+  ...PRESETS[0],
+  id: 'beach2',
+  name: 'Beach Safety · Wide',
+  location: 'Alappuzha Beach · Sector 2',
+  cameraName: 'CAM-02 Wide Shore',
+  video: '/videos/beach-2.mp4',
+  trim: { start: 17.5, end: 66.4 },
+  // Elevated wide shot; sea on the LEFT. The yellow line sits a little inland of the foam (storm buffer).
+  defaultZone: [{ x: 0, y: 0.2 }, { x: 0.41, y: 0.2 }, { x: 0.44, y: 0.4 }, { x: 0.43, y: 0.58 }, { x: 0.39, y: 0.75 }, { x: 0.35, y: 1 }, { x: 0, y: 1 }],
+})
+
+PRESETS.push({
+  id: 'promenade',
+  name: 'Lakeside Promenade',
+  location: 'Alappuzha Backwaters · Lakeside Promenade',
+  cameraName: 'CAM-09 Promenade',
+  zoneLabel: 'Water edge',
+  video: '/videos/backwater-2.mp4',
+  themeVariant: 'backwater',
+  // Water is on the LEFT in this hand-held clip; boundary follows the average kerb line.
+  defaultZone: [{ x: 0, y: 0.3 }, { x: 1, y: 0.3 }, { x: 1, y: 0.4 }, { x: 0, y: 0.64 }],
+  webcamZone: [{ x: 0.62, y: 0.5 }, { x: 1, y: 0.5 }, { x: 1, y: 1 }, { x: 0.62, y: 1 }],
+  warningMessages: {
+    en: {
+      person: (c) => `Attention, person in the ${c} shirt. Please step away from the water's edge.`,
+      generic: 'Attention, person near the water\'s edge. Please step back onto the walkway.',
+      group: 'Attention everyone near the water. Please step back onto the walkway.',
+    },
+    ml: {
+      person: (c) => `ശ്രദ്ധിക്കുക, ${c} ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കുക.`,
+      generic: 'ശ്രദ്ധിക്കുക, വെള്ളത്തിന്റെ അരികിലുള്ള വ്യക്തി. ദയവായി നടപ്പാതയിലേക്ക് മാറി നിൽക്കുക.',
+      group: 'ശ്രദ്ധിക്കുക, എല്ലാവരും ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കുക.',
+    },
+  },
+})
 
 export function warningText(p: EnvironmentPreset, lang: Language, color: ClothingColor): string {
   const m = p.warningMessages[lang]

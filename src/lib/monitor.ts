@@ -26,6 +26,8 @@ export interface Settings {
   warningDistance: number
   /** Recorded clips: run detection on every 0.1 s frame up front, then play back smoothly. */
   preAnalyse: boolean
+  /** Lifeguard switch: storm = water entry forbidden (red + voice). Off = yellow line is advisory (amber only). */
+  stormMode: boolean
 }
 
 export interface LogEntry { id: number; t: number; kind: 'breach' | 'resolved' | 'unresolved' | 'lost' | 'warning'; personId: string; text: string }
@@ -190,22 +192,23 @@ export class Monitor {
    * as fast as the hardware allows, so playback is smooth on any laptop.
    * Tracking, safety logic, voice and incidents still run during playback.
    */
-  private cache?: { src: string; frames: Detection[][]; fps: number }
+  private cache?: { src: string; frames: Detection[][]; fps: number; step: number }
   private lastCacheIdx = -1
   private static STEP = 0.1
   private analysisKey(src: string) {
     const name = src.startsWith('blob:') ? `${this.snap.sourceName}:${this.video.duration.toFixed(2)}` : new URL(src).pathname
-    return `edgeguard.analysis.v2:${name}:${this.range.start}-${this.range.end.toFixed(2)}`
+    return `edgeguard.analysis.v3:${name}:${this.range.start}-${this.range.end.toFixed(2)}`
   }
   private async analyse(src: string) {
-    const v = this.video, step = Monitor.STEP
+    const v = this.video
+    const step = this.range.end - this.range.start > 20 ? 0.2 : Monitor.STEP
     v.pause()
     const key = this.analysisKey(src)
     try {
       const saved = localStorage.getItem(key)
       if (saved) {
         const parsed = JSON.parse(saved) as { frames: Detection[][]; fps: number }
-        this.cache = { src, frames: parsed.frames, fps: parsed.fps }
+        this.cache = { src, frames: parsed.frames, fps: parsed.fps, step }
         return
       }
     } catch { /* re-analyse */ }
@@ -217,12 +220,13 @@ export class Monitor {
       if (!this.snap.running || v.src !== src) return // stopped or switched mid-analysis
       v.currentTime = Math.min(start + i * step, end - 0.01)
       await new Promise<void>((r) => { v.onseeked = () => r() })
-      this.vision.capture(v, false)
-      frames[i] = await this.vision.infer({ mirrored: false, crowdBoost: true, minScore: 0.25, both: true })
+      const wide = v.videoWidth >= 1600
+      this.vision.capture(v, false, wide ? 1920 : 960)
+      frames[i] = await this.vision.infer({ mirrored: false, crowdBoost: true, grid: wide, minScore: 0.25, both: true })
       if (i % 3 === 0) this.patch({ sourceNote: `Analysing footage with AI… ${Math.round(((i + 1) / n) * 100)}% (${i + 1}/${n} frames)` })
     }
     v.onseeked = null
-    this.cache = { src, frames, fps: n / ((performance.now() - t0) / 1000) }
+    this.cache = { src, frames, fps: n / ((performance.now() - t0) / 1000), step }
     // Store compactly (rounded coordinates); if storage is full, playback still works this session.
     try {
       const r = (x: number) => Math.round(x * 1000) / 1000
@@ -361,7 +365,7 @@ export class Monitor {
       this.lastVideoTime = v.currentTime
       const cache = this.cache && this.cache.src === v.src && this.snap.source === 'video' ? this.cache : undefined
       if (cache) {
-        const i = Math.max(0, Math.min(cache.frames.length - 1, Math.floor((v.currentTime - this.range.start) / Monitor.STEP + 1e-6)))
+        const i = Math.max(0, Math.min(cache.frames.length - 1, Math.floor((v.currentTime - this.range.start) / cache.step + 1e-6)))
         if (i !== this.lastCacheIdx) {
           this.lastCacheIdx = i
           this.vision.capture(v, false) // current pixels for clothing colour
@@ -388,7 +392,7 @@ export class Monitor {
       camera: this.settings.preset.cameraName,
       sourceLabel: this.snap.source === 'webcam' ? 'LIVE CAMERA · AI INFERENCE' : this.cache ? 'RECORDED FOOTAGE · PRE-ANALYSED AI DETECTIONS' : 'RECORDED FOOTAGE · LIVE AI INFERENCE',
       clock: new Date().toLocaleTimeString('en-IN', { hour12: false }),
-      subtitle: sub, calibrating: this.calibrating, dragIndex: this.dragIndex, draft: this.draft,
+      subtitle: sub, storm: this.settings.stormMode, calibrating: this.calibrating, dragIndex: this.dragIndex, draft: this.draft,
     }, performance.now(), mirrored)
     this.emit()
   }
@@ -415,7 +419,8 @@ export class Monitor {
 
     for (const z of this.zones) { z.warningDistance = s.warningDistance; z.breachConfirmationMilliseconds = s.breachConfirmMs }
     const events = this.safety.update(tracks, this.zones, now, aspect, {
-      breachConfirmMs: s.breachConfirmMs, unresolvedMs: s.unresolvedMs, resolveMs: 400,
+      // Outside storm mode the yellow line is advisory: crossing it shows amber, never a breach.
+      breachConfirmMs: s.stormMode ? s.breachConfirmMs : Infinity, unresolvedMs: s.unresolvedMs, resolveMs: 400,
     })
     for (const e of events) this.handle(e)
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Circle, Clapperboard, Crosshair, Gauge, Pencil, Play, RefreshCcw, RotateCcw, Sailboat, SlidersHorizontal, Square, SwitchCamera, TrainFront, Volume2, VolumeX, Waves } from 'lucide-react'
+import { Circle, Clapperboard, Crosshair, Gauge, Pencil, Play, RefreshCcw, RotateCcw, Sailboat, TreePalm, SlidersHorizontal, Square, SwitchCamera, TrainFront, Volume2, VolumeX, Waves } from 'lucide-react'
 import type { Settings, Snapshot } from '../lib/monitor'
 import { PRESETS } from '../lib/presets'
 import type { EnvironmentPreset } from '../types'
@@ -24,7 +24,7 @@ interface Props {
   setRate: (r: number) => void
 }
 
-const ICON = { beach: Waves, metro: TrainFront, backwater: Sailboat }
+const ICON = { beach: Waves, beach2: Waves, metro: TrainFront, backwater: Sailboat, promenade: TreePalm }
 
 export function ControlStrip(p: Props) {
   const { snap, settings: s } = p
@@ -32,7 +32,7 @@ export function ControlStrip(p: Props) {
   const live = snap.running
 
   return (
-    <footer className="relative flex h-[62px] shrink-0 items-center gap-2.5 border-t border-line bg-bg/80 px-4 backdrop-blur">
+    <footer className="relative flex h-[54px] shrink-0 items-center gap-2 border-t border-line bg-bg px-4">
       {live
         ? <button className="btn btn-danger" onClick={p.onStop}><Square size={14} fill="currentColor" /> Stop</button>
         : <button className="btn btn-primary" onClick={p.onStart} disabled={snap.engine !== 'ready'}><Play size={14} fill="currentColor" /> Start monitoring</button>}
@@ -55,6 +55,11 @@ export function ControlStrip(p: Props) {
           )}
         </AnimatePresence>
       </div>
+
+      <button className={`btn ${s.stormMode ? 'btn-danger' : ''}`} onClick={() => p.set({ stormMode: !s.stormMode })}
+        title="Lifeguard control. Storm: entering the water is forbidden (red + voice warning). Normal: the yellow line is advisory (amber only).">
+        {s.stormMode ? 'Storm · water closed' : 'Normal · advisory'}
+      </button>
 
       <div className="seg" role="group" aria-label="Voice language">
         <button data-on={s.language === 'en'} onClick={() => p.set({ language: 'en' })}>EN</button>
@@ -79,16 +84,16 @@ export function ControlStrip(p: Props) {
 
         <button className={`btn ${open ? 'btn-on' : ''}`} onClick={() => setOpen((o) => !o)}><SlidersHorizontal size={15} /></button>
 
-        <div className={`mono flex h-[38px] items-center gap-2 rounded-[10px] border px-3 text-[11px] font-semibold ${!live ? 'border-line text-muted' : snap.source === 'webcam' ? 'border-danger/50 text-[#FF8A73]' : 'border-cyan/50 text-cyan'}`}>
-          <span className={`h-1.5 w-1.5 rounded-full ${!live ? 'bg-muted' : snap.source === 'webcam' ? 'bg-danger animate-pulse' : 'bg-cyan animate-pulse'}`} />
-          {!live ? 'STANDBY' : snap.source === 'webcam' ? 'LIVE' : snap.preAnalysed ? 'FOOTAGE · PRE-ANALYSED AI' : 'FOOTAGE · LIVE AI'}
-        </div>
+        <span className="chip border border-line text-muted" title={snap.preAnalysed ? 'Detections were computed on every 0.1 s frame before playback' : undefined}>
+          <span className="dot" style={{ background: !live ? '#5A626C' : snap.source === 'webcam' ? '#E5533D' : '#3FB97A' }} />
+          {!live ? 'Standby' : snap.source === 'webcam' ? 'Live camera' : snap.preAnalysed ? 'Recorded · pre-analysed' : 'Recorded · live inference'}
+        </span>
       </div>
 
       <AnimatePresence>
         {open && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
-            className="panel absolute bottom-[70px] right-4 z-40 w-[340px] p-4 text-[12.5px] shadow-2xl !bg-surface">
+            className="card absolute bottom-[62px] right-4 z-40 w-[340px] p-4 text-[12.5px] shadow-2xl shadow-black/50">
             <div className="label mb-3 flex items-center gap-2"><Gauge size={13} /> Detection settings</div>
             <Row label="Person detector">
               <div className="seg">

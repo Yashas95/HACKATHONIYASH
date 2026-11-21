@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { AlertTriangle, Camera, CheckCircle2, FileVideo, Loader2, Pause, Play, Upload, Waves, TrainFront, Sailboat, ShieldAlert } from 'lucide-react'
+import { AlertTriangle, Camera, CheckCircle2, FileVideo, Loader2, Pause, Play, Upload, Waves, TrainFront, Sailboat, TreePalm, ShieldAlert, Volume2 } from 'lucide-react'
 import type { Monitor, Snapshot } from '../lib/monitor'
 import type { EnvironmentPreset, Pt } from '../types'
 import type { VoiceState } from '../lib/voice'
 import { PRESETS } from '../lib/presets'
 
-const ICON = { beach: Waves, metro: TrainFront, backwater: Sailboat }
+const ICON = { beach: Waves, beach2: Waves, metro: TrainFront, backwater: Sailboat, promenade: TreePalm }
 
 interface Props {
   monitor: Monitor
@@ -59,129 +59,117 @@ export function Stage(p: Props) {
   const active = snap.running && snap.sourceState === 'live'
   const breach = snap.breaches > 0
   const speaking = p.voice.speaking
+  const progress = /(\d+)%/.exec(snap.sourceNote)?.[1] ?? null
 
   return (
     <div
-      className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-2xl border border-line bg-[#040B13] grid-bg"
+      className="relative flex min-h-0 flex-1 flex-col bg-[#07090B]"
       onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
       onDragLeave={() => setDragOver(false)}
       onDrop={(e) => { e.preventDefault(); setDragOver(false); const f = e.dataTransfer.files[0]; if (f?.type.startsWith('video/')) p.onOpenFile(f) }}
     >
-      {/* breach glow frame */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 z-10 rounded-2xl"
-        animate={{ boxShadow: breach ? ['inset 0 0 0 2px rgba(255,77,46,.9), inset 0 0 60px rgba(255,46,46,.35)', 'inset 0 0 0 2px rgba(255,77,46,.4), inset 0 0 30px rgba(255,46,46,.15)'] : 'inset 0 0 0 1px rgba(50,215,232,.0)' }}
-        transition={breach ? { duration: 0.7, repeat: Infinity, repeatType: 'reverse' } : { duration: 0.3 }}
-      />
-
-      <motion.canvas
-        ref={canvasRef}
-        initial={false}
-        animate={{ opacity: active ? 1 : 0, scale: active ? 1 : 0.985 }}
-        transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-        className={`block max-h-full max-w-full ${p.calibrating ? (p.drawMode ? 'cursor-crosshair' : 'cursor-grab') : ''}`}
-        style={{ aspectRatio: `${snap.size.w} / ${snap.size.h}` }}
-        onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onDoubleClick={onDouble}
-        onContextMenu={(e) => { if (p.drawMode) { e.preventDefault(); onDouble() } }}
-      />
-
-      {/* Idle / launcher */}
+      {/* Alert bar: a plain status strip across the top of the view. */}
       <AnimatePresence>
+        {active && breach ? (
+          <motion.div key="breach" initial={{ height: 0 }} animate={{ height: 32 }} exit={{ height: 0 }}
+            className="flex shrink-0 items-center gap-2 overflow-hidden bg-danger px-4 text-[12.5px] font-medium text-white">
+            <ShieldAlert size={14} />
+            {snap.breaches} {snap.breaches > 1 ? 'people' : 'person'} inside the restricted zone{snap.unresolved ? ` · ${snap.unresolved} unresolved, escalated to operator` : ' · warning issued'}
+          </motion.div>
+        ) : active && snap.log[0]?.kind === 'resolved' && Date.now() - snap.log[0].t < 2500 ? (
+          <motion.div key="ok" initial={{ height: 0 }} animate={{ height: 32 }} exit={{ height: 0 }}
+            className="flex shrink-0 items-center gap-2 overflow-hidden bg-safe/90 px-4 text-[12.5px] font-medium text-[#04140B]">
+            <CheckCircle2 size={14} /> {snap.log[0].personId} returned to the safe area. Breach cleared.
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+
+      <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden p-3">
+        <motion.canvas
+          ref={canvasRef}
+          initial={false}
+          animate={{ opacity: active ? 1 : 0 }}
+          transition={{ duration: 0.4 }}
+          className={`block max-h-full max-w-full rounded-[4px] ${p.calibrating ? (p.drawMode ? 'cursor-crosshair' : 'cursor-grab') : ''}`}
+          style={{ aspectRatio: `${snap.size.w} / ${snap.size.h}` }}
+          onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onDoubleClick={onDouble}
+          onContextMenu={(e) => { if (p.drawMode) { e.preventDefault(); onDouble() } }}
+        />
+
+        {/* Idle: compact feed picker */}
         {!snap.running && (
-          <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="scroll-thin absolute inset-0 z-20 flex flex-col items-center gap-5 overflow-y-auto p-6 [&>*:first-child]:mt-auto [&>*:last-child]:mb-auto">
-            <div className="text-center">
-              <div className="label mb-2 text-cyan">Monitoring standby</div>
-              <h1 className="font-display text-[28px] font-semibold tracking-tight">Choose a camera feed to begin</h1>
-              <p className="mx-auto mt-2 max-w-xl text-[13.5px] text-muted">Every overlay is produced by on-device pose and person detection running on the frames you see. Nothing is scripted.</p>
+          <div className="scroll-thin absolute inset-0 z-20 overflow-y-auto p-6">
+            <div className="mx-auto mt-[8vh] max-w-[560px]">
+              <h2 className="text-[15px] font-semibold">No feed selected</h2>
+              <p className="mt-1 text-[12.5px] text-muted">Pick a camera. Detection runs on-device on the frames shown.</p>
+              <div className="card mt-4 overflow-hidden">
+                {PRESETS.map((pr) => {
+                  const Icon = ICON[pr.id]
+                  const ok = p.available[pr.id]
+                  return (
+                    <button key={pr.id} onClick={() => p.onPickVideo(pr)} disabled={snap.engine !== 'ready' || !ok}
+                      className="flex w-full items-center gap-3 border-b border-line px-4 py-2.5 text-left last:border-0 hover:bg-surface-2 disabled:opacity-50">
+                      <Icon size={15} className="text-muted" />
+                      <span className="text-[13px] font-medium">{pr.name}</span>
+                      <span className="mono text-[11px] text-muted">{pr.cameraName.split(' ')[0]}</span>
+                      <span className="ml-auto text-[11.5px] text-muted">{ok ? pr.location.split(' · ')[0] : `missing public${pr.video}`}</span>
+                    </button>
+                  )
+                })}
+                <button onClick={p.onPickWebcam} disabled={snap.engine !== 'ready'}
+                  className="flex w-full items-center gap-3 px-4 py-2.5 text-left hover:bg-surface-2 disabled:opacity-50">
+                  <Camera size={15} className="text-muted" />
+                  <span className="text-[13px] font-medium">Laptop camera</span>
+                  <span className="ml-auto text-[11.5px] text-muted">live</span>
+                </button>
+              </div>
+              <button className="btn mt-3" onClick={() => fileRef.current?.click()} disabled={snap.engine !== 'ready'}><Upload size={14} /> Open video file</button>
+              <span className="ml-2 text-[11.5px] text-muted">or drop one here</span>
+              <input ref={fileRef} type="file" accept="video/*" hidden onChange={(e) => { const f = e.target.files?.[0]; if (f) p.onOpenFile(f); e.target.value = '' }} />
+
+              {snap.engine === 'loading' && <p className="mt-4 flex items-center gap-2 text-[12.5px] text-muted"><Loader2 size={14} className="animate-spin" />{snap.engineNote}</p>}
+              {snap.engine === 'error' && <p className="mt-4 flex items-center gap-2 text-[12.5px] text-danger"><AlertTriangle size={14} />{snap.engineNote}. Run <span className="mono">npm run setup</span> and reload.</p>}
+              {snap.sourceState === 'error' && <p className="mt-4 flex items-center gap-2 text-[12.5px] text-danger"><AlertTriangle size={14} />{snap.sourceNote}</p>}
             </div>
-            <div className="grid w-full max-w-4xl grid-cols-2 gap-3 lg:grid-cols-4">
-              {PRESETS.map((pr) => {
-                const Icon = ICON[pr.id]
-                const ok = p.available[pr.id]
-                return (
-                  <button key={pr.id} onClick={() => p.onPickVideo(pr)} disabled={snap.engine !== 'ready'}
-                    className="group panel flex flex-col items-start gap-2 p-4 text-left transition hover:border-cyan/60 hover:shadow-[0_0_30px_rgba(50,215,232,.12)] disabled:opacity-50">
-                    <div className="flex w-full items-center justify-between">
-                      <span className="grid h-9 w-9 place-items-center rounded-lg bg-cyan/10 text-cyan"><Icon size={18} /></span>
-                      <span className={`mono rounded px-1.5 py-0.5 text-[10px] ${ok ? 'bg-safe/15 text-safe' : 'bg-caution/15 text-caution'}`}>{ok ? 'FOOTAGE READY' : 'NO FILE'}</span>
-                    </div>
-                    <div className="font-semibold">{pr.name}</div>
-                    <div className="text-[12px] leading-snug text-muted">{ok ? pr.location : <>Add <span className="mono text-ink">public{pr.video}</span></>}</div>
-                  </button>
-                )
-              })}
-              <button onClick={p.onPickWebcam} disabled={snap.engine !== 'ready'}
-                className="panel flex flex-col items-start gap-2 p-4 text-left transition hover:border-cyan/60 hover:shadow-[0_0_30px_rgba(50,215,232,.12)] disabled:opacity-50">
-                <div className="flex w-full items-center justify-between">
-                  <span className="grid h-9 w-9 place-items-center rounded-lg bg-danger/10 text-danger"><Camera size={18} /></span>
-                  <span className="mono rounded bg-danger/15 px-1.5 py-0.5 text-[10px] text-danger">LIVE</span>
+          </div>
+        )}
+
+        {snap.running && snap.sourceState === 'starting' && (
+          <div className="absolute inset-0 z-20 grid place-items-center bg-[#07090B]">
+            <div className="w-[300px]">
+              <div className="flex items-center gap-2 text-[12.5px]"><Loader2 className="animate-spin text-muted" size={14} />{snap.sourceNote || 'Connecting…'}</div>
+              {progress !== null && (
+                <div className="mt-2 h-1 overflow-hidden rounded bg-line">
+                  <div className="h-full bg-accent transition-[width]" style={{ width: `${progress}%` }} />
                 </div>
-                <div className="font-semibold">Live webcam</div>
-                <div className="text-[12px] leading-snug text-muted">Judge walks into the zone in front of the laptop.</div>
-              </button>
+              )}
             </div>
-            <button className="btn" onClick={() => fileRef.current?.click()} disabled={snap.engine !== 'ready'}><Upload size={15} /> Open any video file… <span className="text-muted">(or drop it here)</span></button>
-            <input ref={fileRef} type="file" accept="video/*" hidden onChange={(e) => { const f = e.target.files?.[0]; if (f) p.onOpenFile(f); e.target.value = '' }} />
-
-            {snap.engine === 'loading' && <div className="flex items-center gap-2 text-[13px] text-cyan"><Loader2 size={15} className="animate-spin" />{snap.engineNote}</div>}
-            {snap.engine === 'error' && <div className="flex max-w-xl items-center gap-2 rounded-lg border border-danger/40 bg-danger/10 px-3 py-2 text-[13px] text-[#FF9A85]"><AlertTriangle size={15} />{snap.engineNote} — run <span className="mono">npm run setup</span> and reload.</div>}
-            {snap.sourceState === 'error' && <div className="flex max-w-xl items-center gap-2 rounded-lg border border-danger/40 bg-danger/10 px-3 py-2 text-[13px] text-[#FF9A85]"><AlertTriangle size={15} />{snap.sourceNote}</div>}
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
 
-      {snap.running && snap.sourceState === 'starting' && (
-        <div className="scanline absolute inset-0 z-20 grid place-items-center">
-          <div className="flex items-center gap-2 text-[14px] text-cyan"><Loader2 className="animate-spin" size={16} />{snap.sourceNote || 'Connecting…'}</div>
-        </div>
-      )}
+        {dragOver && <div className="absolute inset-3 z-30 grid place-items-center rounded-md border border-dashed border-accent bg-accent/5 text-[13px] text-ink"><div className="flex items-center gap-2"><FileVideo size={16} /> Drop video to analyse</div></div>}
 
-      {dragOver && <div className="absolute inset-3 z-30 grid place-items-center rounded-xl border-2 border-dashed border-cyan/70 bg-cyan/5 text-cyan"><div className="flex items-center gap-2 font-semibold"><FileVideo /> Drop video to analyse</div></div>}
-
-      {/* Breach banner */}
-      <AnimatePresence>
-        {active && breach && (
-          <motion.div key="breach" initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -30, opacity: 0 }}
-            className="absolute left-1/2 top-16 z-20 flex -translate-x-1/2 items-center gap-2.5 rounded-full border border-danger/60 bg-[#2A0E0B]/90 px-4 py-2 text-[13px] font-semibold text-[#FFB4A6] shadow-[0_0_40px_rgba(255,77,46,.35)]">
-            <ShieldAlert size={16} className="text-danger" />
-            {snap.breaches} active boundary breach{snap.breaches > 1 ? 'es' : ''}{snap.unresolved ? ` · ${snap.unresolved} unresolved` : ''}
-          </motion.div>
-        )}
-        {active && !breach && snap.log[0]?.kind === 'resolved' && Date.now() - snap.log[0].t < 2500 && (
-          <motion.div key="ok" initial={{ y: -30, opacity: 0, scale: 0.9 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: -30, opacity: 0 }}
-            className="absolute left-1/2 top-16 z-20 flex -translate-x-1/2 items-center gap-2 rounded-full border border-safe/60 bg-[#062019]/90 px-4 py-2 text-[13px] font-semibold text-safe shadow-[0_0_40px_rgba(52,211,153,.3)]">
-            <CheckCircle2 size={16} /> Breach cleared · {snap.log[0].personId} back in safe area
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Voice pulse */}
-      <AnimatePresence>
         {speaking && (
-          <motion.div key="voice" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}
-            className="absolute right-4 top-16 z-20 flex items-center gap-2 rounded-lg border border-cyan/40 bg-bg/85 px-3 py-2 text-[12px]">
-            <span className="flex h-4 items-end gap-[2px]">{[0, 1, 2, 3].map((i) => (
-              <motion.span key={i} className="w-[3px] rounded bg-cyan" animate={{ height: [4, 14, 6, 12, 4] }} transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.12 }} />
-            ))}</span>
-            <span className="font-semibold text-cyan">{speaking.source === 'sarvam' ? 'Sarvam voice' : 'Fallback voice'}</span>
-            <span className="text-muted">→ {speaking.personIds.join(', ')}</span>
-          </motion.div>
+          <div className="absolute right-5 top-5 z-20 flex items-center gap-2 rounded-md border border-line-2 bg-bg/90 px-2.5 py-1.5 text-[11.5px]">
+            <Volume2 size={13} className="text-accent" />
+            <span>{speaking.source === 'sarvam' ? 'Sarvam voice' : 'Browser voice'}</span>
+            <span className="text-muted">to {speaking.personIds.join(', ')}</span>
+          </div>
         )}
-      </AnimatePresence>
 
-      {/* Calibration helper */}
-      {p.calibrating && active && (
-        <div className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-lg border border-cyan/40 bg-bg/90 px-4 py-2 text-[12.5px] text-ink">
-          {p.drawMode
-            ? <>Click to place points · <b>double-click</b> or right-click to close ({draft.length} pts)</>
-            : <>Drag the cyan handles to fit the hazardous area · playback keeps running</>}
-        </div>
-      )}
+        {p.calibrating && active && (
+          <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 rounded-md border border-line-2 bg-bg/95 px-3 py-1.5 text-[12px]">
+            {p.drawMode
+              ? <>Click to place points. Double-click or right-click to close ({draft.length} points).</>
+              : <>Drag the handles to fit the restricted area. Changes save automatically.</>}
+          </div>
+        )}
+      </div>
 
-      {/* Playback scrubber (recorded footage only) */}
-      {active && snap.source === 'video' && !p.calibrating && (
-        <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center gap-3 rounded-lg bg-bg/70 px-3 py-1.5 opacity-0 transition hover:opacity-100">
-          <button onClick={() => monitor.togglePause()} className="text-ink">{snap.paused ? <Play size={16} /> : <Pause size={16} />}</button>
+      {/* Transport bar for recorded footage */}
+      {active && snap.source === 'video' && (
+        <div className="flex h-[34px] shrink-0 items-center gap-3 border-t border-line px-4">
+          <button onClick={() => monitor.togglePause()} className="text-muted hover:text-ink" title="Play / pause (Space)">{snap.paused ? <Play size={14} /> : <Pause size={14} />}</button>
           <input type="range" min={0} max={snap.videoDuration || 1} step={0.1} value={snap.videoTime} onChange={(e) => monitor.seek(+e.target.value)} className="flex-1" />
           <span className="mono text-[11px] text-muted">{fmt(snap.videoTime)} / {fmt(snap.videoDuration)}</span>
         </div>
