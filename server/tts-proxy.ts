@@ -6,7 +6,11 @@ import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-interface Opts { apiKey?: string; model: string; speakerEn: string; speakerMl: string; cacheDir: string }
+interface Opts { apiKey?: string; model: string; speakers: Record<string, string>; cacheDir: string }
+
+const LANG_CODE: Record<string, string> = { en: 'en-IN', ml: 'ml-IN', hi: 'hi-IN', kn: 'kn-IN' }
+/** Languages whose warning text is translated from English by Sarvam Translate. */
+const TRANSLATE = new Set(['hi', 'kn'])
 
 export function sarvamTtsProxy(opts: Opts): Plugin {
   mkdirSync(opts.cacheDir, { recursive: true })
@@ -26,32 +30,51 @@ export function sarvamTtsProxy(opts: Opts): Plugin {
     let text = '', lang = 'en'
     try { ({ text, lang } = JSON.parse(raw)) } catch { return send(400, { error: 'bad json' }) }
     if (!text || text.length > 500) return send(400, { error: 'text must be 1–500 chars' })
-    const languageCode = lang === 'ml' ? 'ml-IN' : 'en-IN'
-    const speaker = lang === 'ml' ? opts.speakerMl : opts.speakerEn
+    if (!LANG_CODE[lang]) return send(400, { error: `unsupported lang ${lang}` })
+    const languageCode = LANG_CODE[lang]
+    const speaker = opts.speakers[lang] ?? opts.speakers.en
 
-    const key = createHash('sha1').update(`${opts.model}|${speaker}|${languageCode}|${text}`).digest('hex')
-    const file = join(opts.cacheDir, `${key}.wav`)
-    const sendWav = (buf: Buffer, cached: boolean) => {
+    const key = createHash('sha1').update(`mp3|${opts.model}|${speaker}|${languageCode}|${text}`).digest('hex')
+    const file = join(opts.cacheDir, `${key}.mp3`)
+    const textFile = join(opts.cacheDir, `${key}.txt`)
+    const metaFile = join(opts.cacheDir, `${key}.json`)
+    const sendWav = (buf: Buffer, spoken: string, cached: boolean) => {
       res.statusCode = 200
-      res.setHeader('Content-Type', 'audio/wav')
+      res.setHeader('Content-Type', 'audio/mpeg')
       res.setHeader('X-TTS-Source', cached ? 'sarvam-cache' : 'sarvam')
+      res.setHeader('X-Spoken-Text', encodeURIComponent(spoken))
       res.end(buf)
     }
-    if (existsSync(file)) return sendWav(readFileSync(file), true)
+    if (existsSync(file)) return sendWav(readFileSync(file), existsSync(textFile) ? readFileSync(textFile, 'utf-8') : text, true)
     if (!opts.apiKey) return send(503, { error: 'SARVAM_API_KEY not set' })
 
     try {
+      // Hindi / Kannada: translate the English warning with Sarvam Translate first.
+      let spoken = text
+      if (TRANSLATE.has(lang)) {
+        const t = await fetch('https://api.sarvam.ai/translate', {
+          method: 'POST',
+          headers: { 'api-subscription-key': opts.apiKey, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ input: text, source_language_code: 'en-IN', target_language_code: languageCode, model: 'sarvam-translate:v1' }),
+          signal: AbortSignal.timeout(25000),
+        })
+        const tj = (await t.json()) as { translated_text?: string; error?: { message?: string } }
+        if (!t.ok || !tj.translated_text) return send(502, { error: tj.error?.message ?? `Sarvam translate HTTP ${t.status}` })
+        spoken = tj.translated_text
+      }
       const r = await fetch('https://api.sarvam.ai/text-to-speech', {
         method: 'POST',
         headers: { 'api-subscription-key': opts.apiKey, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, language_code: languageCode, model: opts.model, speaker, pace: 1.05, enable_preprocessing: true }),
-        signal: AbortSignal.timeout(10000),
+        body: JSON.stringify({ text: spoken, language_code: languageCode, model: opts.model, speaker, pace: 1.05, enable_preprocessing: true, output_audio_codec: 'mp3' }),
+        signal: AbortSignal.timeout(25000),
       })
       const data = (await r.json()) as { audios?: string[]; error?: { message?: string } }
       if (!r.ok || !data.audios?.[0]) return send(502, { error: data.error?.message ?? `Sarvam HTTP ${r.status}` })
       const buf = Buffer.from(data.audios[0], 'base64')
       writeFileSync(file, buf)
-      sendWav(buf, false)
+      writeFileSync(textFile, spoken, 'utf-8')
+      writeFileSync(metaFile, JSON.stringify({ lang, text, spoken }), 'utf-8')
+      sendWav(buf, spoken, false)
     } catch (e) {
       send(502, { error: `Sarvam unreachable: ${(e as Error).message}` })
     }

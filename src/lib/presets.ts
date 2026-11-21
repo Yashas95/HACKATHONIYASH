@@ -1,6 +1,6 @@
 import type { ClothingColor, EnvironmentPreset, Language } from '../types'
 
-export const COLOR_WORDS: Record<Language, Record<Exclude<ClothingColor, 'unknown'>, string>> = {
+export const COLOR_WORDS: Record<'en' | 'ml', Record<Exclude<ClothingColor, 'unknown'>, string>> = {
   en: { red: 'red', blue: 'blue', green: 'green', yellow: 'yellow', black: 'black', white: 'white', grey: 'grey' },
   ml: {
     red: 'ചുവന്ന', blue: 'നീല', green: 'പച്ച', yellow: 'മഞ്ഞ',
@@ -27,7 +27,7 @@ export const PRESETS: EnvironmentPreset[] = [
     webcamZone: [{ x: 0.62, y: 0.5 }, { x: 1, y: 0.5 }, { x: 1, y: 1 }, { x: 0.62, y: 1 }],
     warningMessages: {
       en: {
-        person: (c) => `Attention, person in the ${c} shirt. Storm warning: the sea is closed. Please step back behind the yellow line.`,
+        person: (c) => `Attention please, you in the ${c} shirt. Storm warning: the sea is closed. Please step back behind the yellow line.`,
         generic: 'Attention, please. Storm warning: the sea is closed. Please step back behind the yellow line.',
         group: 'Attention everyone near the shoreline. Please step back from the restricted area.',
       },
@@ -50,8 +50,8 @@ export const PRESETS: EnvironmentPreset[] = [
     webcamZone: [{ x: 0.62, y: 0.5 }, { x: 1, y: 0.5 }, { x: 1, y: 1 }, { x: 0.62, y: 1 }],
     warningMessages: {
       en: {
-        person: (c) => `Attention, person in the ${c} shirt. Please step back behind the yellow line.`,
-        generic: 'Attention, person near the platform edge. Please step back behind the yellow line.',
+        person: (c) => `Attention please, you in the ${c} shirt. Please step back behind the yellow line.`,
+        generic: 'Attention please, you near the platform edge. Please step back behind the yellow line.',
         group: 'Attention passengers near the platform edge. Please step back behind the yellow line.',
       },
       ml: {
@@ -75,8 +75,8 @@ export const PRESETS: EnvironmentPreset[] = [
     webcamZone: [{ x: 0.62, y: 0.5 }, { x: 1, y: 0.5 }, { x: 1, y: 1 }, { x: 0.62, y: 1 }],
     warningMessages: {
       en: {
-        person: (c) => `Attention, person in the ${c} shirt. Please move away from the jetty edge.`,
-        generic: 'Attention, person near the jetty edge. Please move away from the water.',
+        person: (c) => `Attention please, you in the ${c} shirt. Please move away from the jetty edge.`,
+        generic: 'Attention please, you near the jetty edge. Please move away from the water.',
         group: 'Attention everyone near the jetty. Please move away from the edge.',
       },
       ml: {
@@ -113,7 +113,7 @@ PRESETS.push({
   webcamZone: [{ x: 0.62, y: 0.5 }, { x: 1, y: 0.5 }, { x: 1, y: 1 }, { x: 0.62, y: 1 }],
   warningMessages: {
     en: {
-      person: (c) => `Attention, person in the ${c} shirt. Please step away from the water's edge.`,
+      person: (c) => `Attention please, you in the ${c} shirt. Please step away from the water's edge.`,
       generic: 'Attention, person near the water\'s edge. Please step back onto the walkway.',
       group: 'Attention everyone near the water. Please step back onto the walkway.',
     },
@@ -125,13 +125,27 @@ PRESETS.push({
   },
 })
 
+/** Hindi and Kannada are produced from the English text by Sarvam Translate (server side). */
+export const sourceLang = (lang: Language): 'en' | 'ml' => (lang === 'ml' ? 'ml' : 'en')
+
+export const LANGUAGES: { id: Language; label: string; name: string }[] = [
+  { id: 'en', label: 'EN', name: 'English' },
+  { id: 'ml', label: 'മലയാളം', name: 'Malayalam' },
+  { id: 'hi', label: 'हिंदी', name: 'Hindi' },
+  { id: 'kn', label: 'ಕನ್ನಡ', name: 'Kannada' },
+]
+
 export function warningText(p: EnvironmentPreset, lang: Language, color: ClothingColor): string {
-  const m = p.warningMessages[lang]
-  return color === 'unknown' ? m.generic : m.person(COLOR_WORDS[lang][color])
+  const l = sourceLang(lang)
+  const m = p.warningMessages[l]
+  return color === 'unknown' ? m.generic : m.person(COLOR_WORDS[l][color])
 }
+
+export const groupText = (p: EnvironmentPreset, lang: Language) => p.warningMessages[sourceLang(lang)].group
 
 /** Every message a preset can speak, for pre-caching. */
 export function allWarnings(p: EnvironmentPreset, lang: Language): string[] {
-  const m = p.warningMessages[lang]
-  return [m.generic, m.group, ...Object.values(COLOR_WORDS[lang]).map(m.person)]
+  const l = sourceLang(lang)
+  const m = p.warningMessages[l]
+  return [m.generic, m.group, ...Object.values(COLOR_WORDS[l]).map(m.person)]
 }

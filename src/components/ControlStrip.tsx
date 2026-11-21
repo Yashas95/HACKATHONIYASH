@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Circle, Clapperboard, Crosshair, Gauge, Pencil, Play, RefreshCcw, RotateCcw, Sailboat, TreePalm, SlidersHorizontal, Square, SwitchCamera, TrainFront, Volume2, VolumeX, Waves } from 'lucide-react'
 import type { Settings, Snapshot } from '../lib/monitor'
-import { PRESETS } from '../lib/presets'
+import { LANGUAGES, PRESETS } from '../lib/presets'
 import type { EnvironmentPreset } from '../types'
 
 interface Props {
@@ -45,7 +45,7 @@ export function ControlStrip(p: Props) {
       </div>
 
       <div className="flex items-center gap-1.5">
-        <button className={`btn ${p.calibrating ? 'btn-on' : ''}`} onClick={p.onCalibrate} disabled={!live}><Crosshair size={15} /> {p.calibrating ? 'Done' : 'Calibrate zone'}</button>
+        <button className={`btn ${p.calibrating ? 'btn-on' : ''}`} onClick={p.onCalibrate} disabled={!live}><Crosshair size={15} /> {p.calibrating ? 'Done' : 'Adjust yellow line'}</button>
         <AnimatePresence>
           {p.calibrating && (
             <motion.div initial={{ opacity: 0, width: 0 }} animate={{ opacity: 1, width: 'auto' }} exit={{ opacity: 0, width: 0 }} className="flex gap-1.5 overflow-hidden">
@@ -62,8 +62,9 @@ export function ControlStrip(p: Props) {
       </button>
 
       <div className="seg" role="group" aria-label="Voice language">
-        <button data-on={s.language === 'en'} onClick={() => p.set({ language: 'en' })}>EN</button>
-        <button data-on={s.language === 'ml'} onClick={() => p.set({ language: 'ml' })}>മലയാളം</button>
+        {LANGUAGES.map((l) => (
+          <button key={l.id} data-on={s.language === l.id} onClick={() => p.set({ language: l.id })} title={`${l.name} voice warnings${l.id === 'hi' || l.id === 'kn' ? ' (Sarvam Translate + Sarvam TTS)' : ' (Sarvam TTS)'}`}>{l.label}</button>
+        ))}
       </div>
       <button className={`btn ${s.audio ? 'btn-on' : ''}`} onClick={() => p.set({ audio: !s.audio })} title="Voice alerts">{s.audio ? <Volume2 size={15} /> : <VolumeX size={15} />}<span className="hidden 2xl:inline">{s.audio ? 'Audio on' : 'Muted'}</span></button>
 

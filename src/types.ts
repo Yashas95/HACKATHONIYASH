@@ -8,7 +8,8 @@ export type ClothingColor =
 
 export type ZoneState = 'safe' | 'caution' | 'breach' | 'unresolved' | 'resolved'
 
-export type Language = 'en' | 'ml'
+/** en/ml use hand-written text; hi/kn are translated from English by Sarvam Translate on the server. */
+export type Language = 'en' | 'ml' | 'hi' | 'kn'
 
 /** One raw detection for the current frame (before tracking). */
 export interface Detection {
@@ -80,6 +81,6 @@ export interface EnvironmentPreset {
   video: string
   /** Optional usable range of the clip in seconds (e.g. to skip a camera zoom). */
   trim?: { start: number; end: number }
-  warningMessages: Record<Language, { person: (color: string) => string; generic: string; group: string }>
+  warningMessages: Record<'en' | 'ml', { person: (color: string) => string; generic: string; group: string }>
   themeVariant: 'coastal' | 'transit' | 'backwater'
 }

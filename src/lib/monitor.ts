@@ -7,7 +7,7 @@ import { ClipRecorder } from './recorder'
 import { drawFrame } from './render'
 import { sampleClothing, stickyColor, torsoRegion } from './color'
 import { incidentStore } from './incidents'
-import { warningText } from './presets'
+import { groupText, warningText } from './presets'
 
 export type SourceKind = 'video' | 'webcam'
 export type EngineStatus = 'idle' | 'loading' | 'ready' | 'error'
@@ -195,6 +195,12 @@ export class Monitor {
   private cache?: { src: string; frames: Detection[][]; fps: number; step: number }
   private lastCacheIdx = -1
   private static STEP = 0.1
+  /** File name for a shipped analysis, e.g. "beach_17.5-66.4". Null for local files. */
+  private analysisSlug(src: string) {
+    if (src.startsWith('blob:')) return null
+    const base = new URL(src).pathname.split('/').pop()!.replace(/\.[^.]+$/, '')
+    return `${base}_${this.range.start}-${this.range.end.toFixed(1)}`
+  }
   private analysisKey(src: string) {
     const name = src.startsWith('blob:') ? `${this.snap.sourceName}:${this.video.duration.toFixed(2)}` : new URL(src).pathname
     return `edgeguard.analysis.v3:${name}:${this.range.start}-${this.range.end.toFixed(2)}`
@@ -204,6 +210,19 @@ export class Monitor {
     const step = this.range.end - this.range.start > 20 ? 0.2 : Monitor.STEP
     v.pause()
     const key = this.analysisKey(src)
+    // 1) Shipped static analysis (instant, same on every machine and on the deployed site).
+    const slug = this.analysisSlug(src)
+    if (slug) {
+      try {
+        const r = await fetch(`/analysis/${slug}.json`)
+        if (r.ok && (r.headers.get('content-type') ?? '').includes('json')) {
+          const parsed = (await r.json()) as { frames: Detection[][]; fps: number; step: number }
+          this.cache = { src, frames: parsed.frames, fps: parsed.fps, step: parsed.step }
+          return
+        }
+      } catch { /* fall through to local analysis */ }
+    }
+    // 2) This browser's saved analysis.
     try {
       const saved = localStorage.getItem(key)
       if (saved) {
@@ -234,8 +253,11 @@ export class Monitor {
         score: r(d.score), box: { x: r(d.box.x), y: r(d.box.y), w: r(d.box.w), h: r(d.box.h) },
         ...(d.landmarks ? { landmarks: d.landmarks.map((p) => ({ x: r(p.x), y: r(p.y), v: r(p.v) })) } : {}),
       })))
-      localStorage.setItem(key, JSON.stringify({ frames: compact, fps: this.cache.fps }))
-    } catch { /* quota exceeded */ }
+      const json = JSON.stringify({ frames: compact, fps: this.cache.fps, step })
+      // In development, also write it to public/analysis/ so it ships with the app.
+      if (import.meta.env.DEV && slug) void fetch(`/api/save-analysis?name=${encodeURIComponent(slug)}`, { method: 'POST', body: json })
+      localStorage.setItem(key, json)
+    } catch { /* quota exceeded: playback still works this session */ }
   }
 
   async startWebcam(deviceId?: string) {
@@ -246,9 +268,22 @@ export class Monitor {
     this.video.loop = false
     this.patch({ source: 'webcam', sourceState: 'starting', sourceName: 'Webcam', sourceNote: 'Requesting camera permission…', running: true })
     try {
-      this.stream = await navigator.mediaDevices.getUserMedia({
-        video: deviceId ? { deviceId: { exact: deviceId }, width: 1280, height: 720 } : { width: 1280, height: 720, facingMode: 'user' },
-        audio: false,
+      if (!navigator.mediaDevices?.getUserMedia) {
+        throw Object.assign(new Error('Camera needs a secure page (https:// or localhost).'), { name: 'InsecureContext' })
+      }
+      try {
+        this.stream = await navigator.mediaDevices.getUserMedia({
+          video: deviceId ? { deviceId: { exact: deviceId }, width: { ideal: 1280 }, height: { ideal: 720 } } : { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'user' },
+          audio: false,
+        })
+      } catch (first) {
+        // Some laptop cameras reject the preferred size: retry with whatever the camera offers.
+        if ((first as DOMException).name !== 'OverconstrainedError' && (first as DOMException).name !== 'NotReadableError') throw first
+        this.stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      }
+      // Unplugged or taken by another app mid-demo: say so instead of freezing.
+      this.stream.getVideoTracks()[0]?.addEventListener('ended', () => {
+        if (this.snap.source === 'webcam') this.patch({ sourceState: 'error', sourceNote: 'Camera disconnected. Reconnect it and choose Laptop camera again.', running: false })
       })
       this.video.srcObject = this.stream
       await this.video.play()
@@ -258,7 +293,8 @@ export class Monitor {
       const err = e as DOMException
       const msg = err.name === 'NotAllowedError' ? 'Camera permission was denied. Allow camera access in the browser, or use the recorded footage presets.'
         : err.name === 'NotFoundError' ? 'No camera found. Use the recorded footage presets instead.'
-        : err.name === 'NotReadableError' ? 'Camera is in use by another app.'
+        : err.name === 'NotReadableError' ? 'Camera is in use by another app (close Zoom/Teams/Camera) and try again.'
+        : err.name === 'InsecureContext' ? err.message
         : `Camera error: ${err.message}`
       this.patch({ sourceState: 'error', sourceNote: msg, running: false })
     }
@@ -447,7 +483,7 @@ export class Monitor {
         this.voice.request({
           personId: t.id, lang,
           text: warningText(p, lang, color), enText: warningText(p, 'en', color),
-          groupText: p.warningMessages[lang].group, groupEnText: p.warningMessages.en.group,
+          groupText: groupText(p, lang), groupEnText: p.warningMessages.en.group,
         })
       }
     } else if (e.type === 'unresolved') {
@@ -513,6 +549,22 @@ export class Monitor {
   }
 
   // Zone editing helpers (display-normalized coords)
+  /** True if p is within tolPx of the yellow line (zone edges not lying on the frame border). */
+  nearLine(p: Pt, tolPx: number, rect: DOMRect): boolean {
+    const pts = this.zones[0]?.polygonCoordinates ?? []
+    const onBorder = (a: Pt, b: Pt) => (a.x <= 0.002 && b.x <= 0.002) || (a.x >= 0.998 && b.x >= 0.998) || (a.y <= 0.002 && b.y <= 0.002) || (a.y >= 0.998 && b.y >= 0.998)
+    for (let i = 0; i < pts.length; i++) {
+      const a = pts[i], b = pts[(i + 1) % pts.length]
+      if (onBorder(a, b)) continue
+      const ax = a.x * rect.width, ay = a.y * rect.height, bx = b.x * rect.width, by = b.y * rect.height
+      const px = p.x * rect.width, py = p.y * rect.height
+      const len2 = (bx - ax) ** 2 + (by - ay) ** 2 || 1
+      const t = Math.max(0, Math.min(1, ((px - ax) * (bx - ax) + (py - ay) * (by - ay)) / len2))
+      if (Math.hypot(px - (ax + t * (bx - ax)), py - (ay + t * (by - ay))) < tolPx) return true
+    }
+    return false
+  }
+
   hitVertex(p: Pt, tolPx: number, rect: DOMRect): number | null {
     const pts = this.zones[0]?.polygonCoordinates ?? []
     let best: number | null = null, bd = tolPx

@@ -16,7 +16,7 @@ export interface VoiceState {
 export class VoiceManager {
   ctx?: AudioContext
   recordDest?: MediaStreamAudioDestinationNode
-  private cache = new Map<string, Promise<AudioBuffer | null>>()
+  private cache = new Map<string, Promise<{ buf: AudioBuffer; spoken: string } | null>>()
   private pending: Utterance[] = []
   private busy = false
   private listeners = new Set<(s: VoiceState) => void>()
@@ -25,7 +25,11 @@ export class VoiceManager {
   subscribe(fn: (s: VoiceState) => void) { this.listeners.add(fn); fn(this.state); return () => { this.listeners.delete(fn) } }
   private set(p: Partial<VoiceState>) { this.state = { ...this.state, ...p }; this.listeners.forEach((f) => f(this.state)) }
 
+  /** Shipped voice pack: "lang|text" → { file, spoken }. Plays instantly and offline. */
+  private pack: Record<string, { file: string; spoken: string }> = {}
+
   async init() {
+    try { const r = await fetch('/voice/manifest.json'); if (r.ok) this.pack = await r.json() } catch { /* no pack */ }
     try {
       const r = await fetch('/api/tts')
       const j = await r.json()
@@ -45,12 +49,20 @@ export class VoiceManager {
     void this.ctx.resume()
   }
 
-  private fetchClip(text: string, lang: Language): Promise<AudioBuffer | null> {
+  private fetchClip(text: string, lang: Language): Promise<{ buf: AudioBuffer; spoken: string } | null> {
     const k = `${lang}|${text}`
     let p = this.cache.get(k)
     if (!p) {
       p = (async () => {
-        if (this.state.backend === 'fallback' || !this.ctx) return null
+        if (!this.ctx) return null
+        const packed = this.pack[k]
+        if (packed) {
+          try {
+            const r = await fetch(`/voice/${packed.file}`)
+            if (r.ok) return { buf: await this.ctx.decodeAudioData(await r.arrayBuffer()), spoken: packed.spoken }
+          } catch { /* fall back to live Sarvam */ }
+        }
+        if (this.state.backend === 'fallback') return null
         try {
           const r = await fetch('/api/tts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text, lang }) })
           if (!r.ok) {
@@ -58,7 +70,9 @@ export class VoiceManager {
             this.set({ backendNote: `Sarvam error: ${j.error ?? r.status} — using browser voice` })
             return null
           }
-          return await this.ctx.decodeAudioData(await r.arrayBuffer())
+          // For hi/kn the server translated the English text; it returns what was actually spoken.
+          const spoken = decodeURIComponent(r.headers.get('X-Spoken-Text') ?? '') || text
+          return { buf: await this.ctx.decodeAudioData(await r.arrayBuffer()), spoken }
         } catch { return null }
       })()
       this.cache.set(k, p)
@@ -69,7 +83,10 @@ export class VoiceManager {
 
   /** Warm the cache so the first real warning has no network latency. */
   async prefetch(texts: string[], lang: Language) {
-    for (const t of texts) { await this.fetchClip(t, lang); await new Promise((r) => setTimeout(r, 150)) }
+    // Three at a time: a fresh Sarvam call can take 5–20 s, so warm the cache in parallel.
+    const queue = [...texts]
+    const worker = async () => { while (queue.length) await this.fetchClip(queue.shift()!, lang) }
+    await Promise.all([worker(), worker(), worker()])
   }
 
   request(u: Utterance) {
@@ -101,17 +118,18 @@ export class VoiceManager {
   onStart?: (personIds: string[], source: VoiceSource, text: string) => void
 
   private async play(text: string, lang: Language, enText: string, personIds: string[]) {
-    const buf = await this.fetchClip(text, lang)
-    if (buf && this.ctx) {
+    const clip = await this.fetchClip(text, lang)
+    if (clip && this.ctx) {
       const src = this.ctx.createBufferSource()
-      src.buffer = buf
+      src.buffer = clip.buf
       src.connect(this.ctx.destination)
       if (this.recordDest) src.connect(this.recordDest)
-      this.set({ speaking: { text, source: 'sarvam', personIds } })
-      this.onStart?.(personIds, 'sarvam', text)
+      this.set({ speaking: { text: clip.spoken, source: 'sarvam', personIds } })
+      this.onStart?.(personIds, 'sarvam', clip.spoken)
       await new Promise<void>((res) => { src.onended = () => res(); src.start() })
     } else {
-      // Browser fallback. Use a Malayalam system voice if one exists, otherwise speak the English text.
+      // Browser fallback. hi/kn text is untranslated English here, so speak it with an English voice.
+      // For Malayalam use a system voice if one exists, otherwise speak the English text.
       const voices = speechSynthesis.getVoices()
       const want = lang === 'ml' ? 'ml' : 'en'
       const voice = voices.find((v) => v.lang.toLowerCase().startsWith(want + '-in')) ?? voices.find((v) => v.lang.toLowerCase().startsWith(want))
@@ -120,10 +138,10 @@ export class VoiceManager {
       if (voice) u.voice = voice
       u.lang = voice?.lang ?? 'en-IN'
       u.rate = 1
-      const label = lang === 'ml' && !voice ? 'browser (no Malayalam voice — English)' : 'browser'
+      const label = lang !== 'en' && want === 'en' ? 'browser (English, no translation offline)' : lang === 'ml' && !voice ? 'browser (no Malayalam voice, English)' : 'browser'
       this.set({ speaking: { text: useText, source: 'browser', personIds } })
       this.onStart?.(personIds, 'browser', useText)
-      if (lang === 'ml' && !voice) this.set({ backendNote: `Fallback: ${label}` })
+      if (label !== 'browser') this.set({ backendNote: `Fallback: ${label}` })
       await new Promise<void>((res) => {
         u.onend = () => res(); u.onerror = () => res()
         speechSynthesis.speak(u)

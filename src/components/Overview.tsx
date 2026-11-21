@@ -6,6 +6,34 @@ import type { EngineStatus } from '../lib/monitor'
 import type { VoiceState } from '../lib/voice'
 
 const ORDER: EnvironmentPreset['id'][] = ['beach', 'beach2', 'metro', 'backwater', 'promenade']
+
+/** Services group cameras by the kind of site they protect. */
+const SERVICES = [
+  { id: 'beach', title: 'Beach & Water', tagline: 'Shorelines, jetties and backwaters', image: '/media/service-beach.jpg', focus: 'center 80%', // portrait photo: keep the shoreline in frame
+    cameras: ['beach', 'beach2', 'backwater', 'promenade'] as EnvironmentPreset['id'][] },
+  { id: 'metro', title: 'Metro Platform', tagline: 'Platform edges and yellow lines', image: '/media/service-metro.jpg', focus: 'center 55%',
+    cameras: ['metro'] as EnvironmentPreset['id'][] },
+] as const
+type ServiceId = (typeof SERVICES)[number]['id']
+
+function ServiceCard({ s, active, cameras, open, onClick }: { s: (typeof SERVICES)[number]; active: boolean; cameras: number; open: number; onClick: () => void }) {
+  return (
+    <button onClick={onClick}
+      className={`group relative h-[210px] overflow-hidden rounded-lg border text-left transition-colors ${active ? 'border-accent' : 'border-line hover:border-line-2'}`}>
+      <img src={s.image} alt="" style={{ objectPosition: s.focus }} className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10" />
+      <div className="absolute left-4 top-4 flex gap-2">
+        <span className="chip bg-black/60 text-ink">{cameras} camera{cameras === 1 ? '' : 's'}</span>
+        {open > 0 && <span className="chip bg-danger text-white">{open} open</span>}
+      </div>
+      {active && <span className="chip absolute right-4 top-4 bg-accent text-white">Selected</span>}
+      <div className="absolute inset-x-4 bottom-4">
+        <div className="text-[34px] font-bold leading-[1.05] tracking-tight text-white lg:text-[40px]">{s.title}</div>
+        <div className="mt-1 text-[13px] text-white/80">{s.tagline}</div>
+      </div>
+    </button>
+  )
+}
 const t24 = (ms: number) => new Date(ms).toLocaleTimeString('en-IN', { hour12: false, hour: '2-digit', minute: '2-digit' })
 
 function Kpi({ label, value, sub, tone }: { label: string; value: string; sub: string; tone?: string }) {
@@ -53,6 +81,9 @@ export function Overview({ engine, engineNote, voice, incidents, available, onSc
   const [now, setNow] = useState(new Date())
   useEffect(() => { const i = setInterval(() => setNow(new Date()), 1000); return () => clearInterval(i) }, [])
 
+  const [service, setService] = useState<ServiceId>('beach')
+  const current = SERVICES.find((x) => x.id === service)!
+  const shown = presets.filter((p) => (current.cameras as readonly string[]).includes(p.id))
   const online = presets.filter((p) => available[p.id]).length
   const today = incidents.filter((i) => new Date(i.detectedAt).toDateString() === now.toDateString())
   const open = incidents.filter((i) => (i.status === 'active' || i.status === 'tracking-lost') && !i.acknowledged)
@@ -83,14 +114,25 @@ export function Overview({ engine, engineNote, voice, incidents, available, onSc
           <Kpi label="Acknowledged" value={`${incidents.filter((i) => i.acknowledged).length}/${incidents.length}`} sub="by an operator, all time" />
         </div>
 
+        <section>
+          <h2 className="mb-2.5 text-[13px] font-semibold">Services</h2>
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+            {SERVICES.map((x) => {
+              const ps = presets.filter((p) => (x.cameras as readonly string[]).includes(p.id))
+              return <ServiceCard key={x.id} s={x} active={service === x.id} cameras={ps.length}
+                open={ps.reduce((n, p) => n + openFor(p), 0)} onClick={() => setService(x.id)} />
+            })}
+          </div>
+        </section>
+
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_340px]">
           <section>
             <div className="mb-2.5 flex items-center justify-between">
-              <h2 className="text-[13px] font-semibold">Cameras</h2>
+              <h2 className="text-[13px] font-semibold">{current.title} · cameras</h2>
               <button className="btn" onClick={onWebcam} disabled={engine !== 'ready'}><Camera size={14} /> Use laptop camera</button>
             </div>
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-              {presets.map((p) => <CameraTile key={p.id} p={p} ok={!!available[p.id]} open={openFor(p)} onOpen={() => onScene(p)} />)}
+              {shown.map((p) => <CameraTile key={p.id} p={p} ok={!!available[p.id]} open={openFor(p)} onOpen={() => onScene(p)} />)}
             </div>
           </section>
 

@@ -133,7 +133,7 @@ export default function App() {
       if ((e.target as HTMLElement).tagName === 'INPUT') return
       if (e.key === ' ' && snap.source === 'video') { e.preventDefault(); monitor.togglePause() }
       if (e.key === 'c') setCalibrating((c) => !c)
-      if (e.key === 'l') set({ language: settings.language === 'en' ? 'ml' : 'en' })
+      if (e.key === 'l') { const order = ['en', 'ml', 'hi', 'kn'] as const; set({ language: order[(order.indexOf(settings.language) + 1) % order.length] }) }
       if (e.key === 'm') set({ audio: !settings.audio })
       if (e.key === 'Escape') { setDrawMode(false); setOpenId(null) }
     }

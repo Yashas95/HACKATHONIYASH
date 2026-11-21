@@ -39,20 +39,37 @@ export function Stage(p: Props) {
     return { x: Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), y: Math.min(1, Math.max(0, (e.clientY - r.top) / r.height)) }
   }
 
+  // Whole-line drag: grab the yellow line anywhere (not a handle) and slide it.
+  const lineDrag = useRef<{ start: Pt; orig: Pt[] } | null>(null)
   const onDown = (e: React.PointerEvent) => {
     if (!p.calibrating) return
     const pt = toNorm(e)
     if (p.drawMode) { setDraft((d) => [...d, pt]); return }
-    const i = monitor.hitVertex(pt, 18, canvasRef.current!.getBoundingClientRect())
-    if (i !== null) { monitor.dragIndex = i; (e.target as Element).setPointerCapture(e.pointerId) }
+    const rect = canvasRef.current!.getBoundingClientRect()
+    const i = monitor.hitVertex(pt, 18, rect)
+    if (i !== null) { monitor.dragIndex = i; (e.target as Element).setPointerCapture(e.pointerId); return }
+    if (monitor.zones[0] && monitor.nearLine(pt, 16, rect)) {
+      lineDrag.current = { start: pt, orig: monitor.zones[0].polygonCoordinates.map((q) => ({ ...q })) }
+      ;(e.target as Element).setPointerCapture(e.pointerId)
+    }
   }
   const onMove = (e: React.PointerEvent) => {
-    if (monitor.dragIndex === null || !monitor.zones[0]) return
-    monitor.zones[0].polygonCoordinates[monitor.dragIndex] = toNorm(e)
+    const z = monitor.zones[0]
+    if (!z) return
+    const pt = toNorm(e)
+    if (monitor.dragIndex !== null) { z.polygonCoordinates[monitor.dragIndex] = pt; return }
+    const d = lineDrag.current
+    if (!d) return
+    const dx = pt.x - d.start.x, dy = pt.y - d.start.y
+    const edge = (v: number) => v <= 0.002 || v >= 0.998
+    const clamp = (v: number) => Math.min(1, Math.max(0, v))
+    // Points on the frame border slide along it; free points move freely.
+    z.polygonCoordinates = d.orig.map((q) => ({ x: edge(q.x) ? q.x : clamp(q.x + dx), y: edge(q.y) ? q.y : clamp(q.y + dy) }))
   }
   const onUp = () => {
-    if (monitor.dragIndex !== null && monitor.zones[0]) p.onZoneEdited([...monitor.zones[0].polygonCoordinates])
+    if ((monitor.dragIndex !== null || lineDrag.current) && monitor.zones[0]) p.onZoneEdited([...monitor.zones[0].polygonCoordinates])
     monitor.dragIndex = null
+    lineDrag.current = null
   }
   const onDouble = () => { if (p.drawMode && draft.length >= 3) { p.onDrawDone(draft); setDraft([]) } }
 
@@ -161,7 +178,7 @@ export function Stage(p: Props) {
           <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 rounded-md border border-line-2 bg-bg/95 px-3 py-1.5 text-[12px]">
             {p.drawMode
               ? <>Click to place points. Double-click or right-click to close ({draft.length} points).</>
-              : <>Drag the handles to fit the restricted area. Changes save automatically.</>}
+              : <>Drag the yellow line to move it, or a handle to bend it. Saved automatically for this camera.</>}
           </div>
         )}
       </div>
