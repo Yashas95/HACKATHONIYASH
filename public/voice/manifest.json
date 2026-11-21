@@ -3,13 +3,29 @@
   "file": "003df497ca8eb3a45e1a8f95b48eedd1656fd606.mp3",
   "spoken": "ध्यान दें, पानी के किनारे के पास वाली महिला। कृपया पीछे हटकर रास्ते पर आ जाएं।"
  },
+ "hi|Hello everyone! The sea is closed today. Please step back behind the yellow line.": {
+  "file": "00668a34178987cbd82a6a9f53e724eb19f2a3a5.mp3",
+  "spoken": "नमस्ते सब लोग! आज समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाएं।"
+ },
  "kn|Attention please, you in the blue shirt. Please step back behind the yellow line.": {
   "file": "00b9d0cafeb2fab60f613d34c43e1be8ffa28480.mp3",
   "spoken": "ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ನೀಲಿ ಅಂಗಿ ಧರಿಸಿರುವ ನೀವು. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
  },
+ "en|Grey shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "011b29beb27b0a4dbef0432ae7153d62d2a81d11.mp3",
+  "spoken": "Grey shirt, what a lovely colour! But please step away from the jetty edge."
+ },
  "ml|ശ്രദ്ധിക്കുക, എല്ലാവരും ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കുക.": {
   "file": "0141674d84689436742157b5a1cc93bcf96ac267.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, എല്ലാവരും ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കുക."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, ചാരനിറത്തിലുള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ.": {
+  "file": "0162aa2e6afc4837c48e66b47a656244f578d65c.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, ചാരനിറത്തിലുള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ."
+ },
+ "en|Hello everyone! Please step away from the jetty edge.": {
+  "file": "0396695caf0a8bd321ea6733ece5f1115262a054.mp3",
+  "spoken": "Hello everyone! Please step away from the jetty edge."
  },
  "kn|Attention please, you in the black shirt. Storm warning: the sea is closed. Please step back behind the yellow line.": {
   "file": "04c164713e40d02fc1589b95a20b7a126601e6a1.mp3",
@@ -23,6 +39,10 @@
   "file": "0563db5d19c392c6cff8924a94807947b5dfc079.mp3",
   "spoken": "कृपया ध्यान दें, हरी शर्ट में खड़ी महिला। कृपया जेट्टी के किनारे से हट जाएं।"
  },
+ "ml|ഹലോ സുഹൃത്തേ, വെള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ.": {
+  "file": "074731ad6e5ca600bfb5935c854536e62ad0b0d8.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, വെള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ."
+ },
  "hi|Attention please, you in the grey shirt. Please move away from the jetty edge.": {
   "file": "07c97e543bab7eb896488a589e9af7b4c0766992.mp3",
   "spoken": "कृपया ध्यान दें, आप, जो ग्रे शर्ट में हैं। कृपया जेट्टी के किनारे से हट जाएं।"
@@ -35,9 +55,45 @@
   "file": "0b547a1089c3ee5ea42cf059fe0687efaa276e68.mp3",
   "spoken": "ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ಕೆಂಪು ಅಂಗಿ ಧರಿಸಿರುವ ನೀವು. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
  },
+ "ml|ഹലോ സുഹൃത്തേ, വെള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "0c6f8cd35b7ba1cb920f7eae7f1886c36767da9f.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, വെള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
+ "hi|Yellow shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "0cfa2e3b22b602b89bc2eb6eda05954a11dae586.mp3",
+  "spoken": "पीली शर्ट, क्या शानदार रंग है! लेकिन कृपया पीली रेखा के पीछे हट जाओ।"
+ },
+ "hi|White shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "0ee6236d61f53c45f88e3f6def15efb112d352ee.mp3",
+  "spoken": "सफेद शर्ट, क्या प्यारा रंग है! लेकिन आज समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाइए।"
+ },
+ "en|Black shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "0fd02a6b601279cd01b0fa6ee537fe06c1fe4eaf.mp3",
+  "spoken": "Black shirt, what a great colour! But please step back behind the yellow line."
+ },
+ "hi|White shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "106d820fa1abbf1dd67dbe4c8c3c19d00ec3b7ab.mp3",
+  "spoken": "सफेद शर्ट, क्या शानदार रंग है! लेकिन कृपया पीली रेखा के पीछे हट जाओ।"
+ },
+ "hi|Hello there! Please step away from the jetty edge.": {
+  "file": "111c255f80dceebbf8d147af0a9e60b8fd12a0d1.mp3",
+  "spoken": "नमस्ते! कृपया जेट्टी के किनारे से हट जाइए।"
+ },
  "hi|Attention please, you in the green shirt. Please step back behind the yellow line.": {
   "file": "11f4461e3af362559e699bb2413512c86e1c6b81.mp3",
   "spoken": "कृपया ध्यान दें, आप हरी शर्ट में हैं। कृपया पीली रेखा के पीछे हट जाएं।"
+ },
+ "hi|Black shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "11f66fc2f34ca25a313d80d677e23b3a995e6d78.mp3",
+  "spoken": "काली कमीज़, क्या प्यारा रंग है! लेकिन आज समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाइए।"
+ },
+ "en|Hello there! Please step back behind the yellow line.": {
+  "file": "155d1c9287c3eb0b96ed1784a0ceb1544b160830.mp3",
+  "spoken": "Hello there! Please step back behind the yellow line."
+ },
+ "hi|Hello everyone! Please step back from the water's edge.": {
+  "file": "157a9b1c0c388a305dc26ca3bb93dc47cc323468.mp3",
+  "spoken": "नमस्ते सब लोग! कृपया पानी के किनारे से पीछे हट जाओ।"
  },
  "kn|Attention please, you in the green shirt. Please step away from the water's edge.": {
   "file": "16e235ee4f6b69e11d9e87777a7216b22b654f49.mp3",
@@ -46,6 +102,10 @@
  "en|Attention please, you in the green shirt. Please move away from the jetty edge.": {
   "file": "174ed087dc9d87378f7056387d3c89f3ad8e1f28.mp3",
   "spoken": "Attention please, you in the green shirt. Please move away from the jetty edge."
+ },
+ "ml|ഹലോ സുഹൃത്തേ! ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ.": {
+  "file": "17e2b113878187440da9bf27c10b58a6e1f57f57.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ! ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ."
  },
  "hi|Attention please, you in the red shirt. Please step away from the water's edge.": {
   "file": "1af81bf5b019be076c8cf30ff0fcfe52b75f5c5c.mp3",
@@ -58,6 +118,10 @@
  "ml|ശ്രദ്ധിക്കുക, ജെട്ടിയുടെ അരികിലുള്ള വ്യക്തി. ദയവായി വെള്ളത്തിൽ നിന്ന് മാറി നിൽക്കുക.": {
   "file": "1d0a872bcd3fc40e284ceff2579617633c4f415a.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, ജെട്ടിയുടെ അരികിലുള്ള വ്യക്തി. ദയവായി വെള്ളത്തിൽ നിന്ന് മാറി നിൽക്കുക."
+ },
+ "kn|Yellow shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "1db665222c5f5ddfccc016b25996b98c913f9bc4.mp3",
+  "spoken": "ಹಳದಿ ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ನೀರಿನ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
  },
  "ml|ശ്രദ്ധിക്കുക, ചുവന്ന ഷർട്ട് ധരിച്ച വ്യക്തി. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക.": {
   "file": "1e03a38f63c090ef1cbffb4c4ab6edadf0da166e.mp3",
@@ -79,6 +143,14 @@
   "file": "2119abbdf38f05b074aa642978b41437d9d0767e.mp3",
   "spoken": "Attention please, you near the jetty edge. Please move away from the water."
  },
+ "ml|ഹലോ സുഹൃത്തേ, മഞ്ഞ ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "22b99dcdb30c6fe5307d1b8a8450ab045c2b2479.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, മഞ്ഞ ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, മഞ്ഞ ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ.": {
+  "file": "22dfa83b1a324bd9748567b6bbc697860dfefab6.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, മഞ്ഞ ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ."
+ },
  "en|Attention please, you in the yellow shirt. Please step back behind the yellow line.": {
   "file": "234d2df96f5cc3494aa40c385db75ffac7372df1.mp3",
   "spoken": "Attention please, you in the yellow shirt. Please step back behind the yellow line."
@@ -95,9 +167,21 @@
   "file": "28616199d7952e201d75a034472c61c250163e2e.mp3",
   "spoken": "ಗಮನಿಸಿ, ದಯವಿಟ್ಟು, ಹಳದಿ ಅಂಗಿ ಧರಿಸಿರುವ ನೀವು. ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
  },
+ "kn|Yellow shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "289aa34663f17b4028b17fc72f5cd6b4dc2b09fb.mp3",
+  "spoken": "ಹಳದಿ ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
+ },
+ "kn|Hello everyone! Let's all stay behind the yellow line.": {
+  "file": "289cf5a0113134abf28273b57af2fe6f67a49644.mp3",
+  "spoken": "ಎಲ್ಲರಿಗೂ ನಮಸ್ಕಾರ! ನಾವೆಲ್ಲರೂ ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಇರೋಣ."
+ },
  "kn|Attention please, you in the blue shirt. Please move away from the jetty edge.": {
   "file": "29a220e269b99b29169c7a84a5cbabaacab54f34.mp3",
   "spoken": "ಗಮನಿಸಿ, ನೀಲಿ ಅಂಗಿ ಧರಿಸಿರುವ ನೀವು. ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
+ },
+ "kn|Hello there! Please step back behind the yellow line.": {
+  "file": "29e405fcc2740cf1da748ab138f3b62f5208e2dc.mp3",
+  "spoken": "ನಮಸ್ಕಾರ! ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
  },
  "en|Attention please, you in the green shirt. Please step away from the water's edge.": {
   "file": "2a4caee9bd033e55fee87510e31a51c0260cc139.mp3",
@@ -123,6 +207,14 @@
   "file": "2d9323be4471047ee6ecaf7f5196c5b556ec36dd.mp3",
   "spoken": "कृपया ध्यान दें, आप, पीली शर्ट में। कृपया पीली रेखा के पीछे हट जाएं।"
  },
+ "en|Red shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "300b1788014fd51985cb05c3658a871c61c33f5b.mp3",
+  "spoken": "Red shirt, what a great colour! But please step back behind the yellow line."
+ },
+ "kn|Blue shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "316552a5a7b62734c78673b3158eee475b4470eb.mp3",
+  "spoken": "ನೀಲಿ ಅಂಗಿ, ಎಂತಹ ಅದ್ಭುತ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
  "ml|ശ്രദ്ധിക്കുക, വെള്ള ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കുക.": {
   "file": "34965c59d6a458438fc928319a3418ed72bab4d3.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, വെള്ള ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കുക."
@@ -131,9 +223,21 @@
   "file": "34d456679f3eb51d856398837de5eb008a04cda0.mp3",
   "spoken": "Attention please, you in the yellow shirt. Storm warning: the sea is closed. Please step back behind the yellow line."
  },
+ "hi|Grey shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "35c5a232255327de2e00e89416b72f4cdc79424c.mp3",
+  "spoken": "धूसर कमीज़, क्या प्यारा रंग है! लेकिन कृपया पानी के किनारे से दूर हट जाओ।"
+ },
+ "ml|ഹലോ സുഹൃത്തേ, കറുത്ത ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "35d50616f0eee697bfdba02396ae97102acfd7ee.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, കറുത്ത ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
  "hi|Attention please, you in the black shirt. Please step back behind the yellow line.": {
   "file": "3664774d2eb500c9b0363bb088d904526683d305.mp3",
   "spoken": "कृपया ध्यान दें, आप काली शर्ट में हैं। कृपया पीली रेखा के पीछे हट जाएं।"
+ },
+ "en|Green shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "377b5146e972df75a191d3f978473eb43429968c.mp3",
+  "spoken": "Green shirt, what a lovely colour! But please step away from the jetty edge."
  },
  "ml|ശ്രദ്ധിക്കുക, നീല ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കുക.": {
   "file": "37e325dcc45d093af7d57188257900de4d24263d.mp3",
@@ -147,25 +251,61 @@
   "file": "38c5a469659121522f9132f404f2a30adf8b8dd7.mp3",
   "spoken": "ಗಮನಿಸಿ, ಕೆಂಪು ಅಂಗಿ ಧರಿಸಿರುವ ಮಹಿಳೆಯೇ. ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
  },
+ "hi|Yellow shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "397975395ec3ab69370a10ec090bf45fb155144f.mp3",
+  "spoken": "पीली कमीज़, क्या प्यारा रंग है! लेकिन कृपया जेट्टी के किनारे से दूर हट जाओ।"
+ },
+ "hi|Green shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "39b12d37351e28e523a1fe935a80d4b0f543b317.mp3",
+  "spoken": "हरी कमीज़, क्या प्यारा रंग है! लेकिन कृपया पानी के किनारे से दूर हट जाओ।"
+ },
  "en|Attention please, you in the yellow shirt. Please step away from the water's edge.": {
   "file": "39dbf0668e5f0a2fa452f9943003456e23a92584.mp3",
   "spoken": "Attention please, you in the yellow shirt. Please step away from the water's edge."
+ },
+ "kn|Red shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "3a4a5010a4e5fe00204dfe8fe1008f6e0177316a.mp3",
+  "spoken": "ಕೆಂಪು ಅಂಗಿ, ಎಂತಹ ಅದ್ಭುತ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
  },
  "hi|Attention please, you in the blue shirt. Please step away from the water's edge.": {
   "file": "3c68ebd292a77727bc487d44f778c86689ed2be2.mp3",
   "spoken": "कृपया ध्यान दें, नीली शर्ट वाली महिला। कृपया पानी के किनारे से हट जाएं।"
  },
+ "hi|White shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "3c8a2f428b0166e95d34f535b4b83784fce20df2.mp3",
+  "spoken": "सफेद शर्ट, क्या प्यारा रंग है! लेकिन कृपया जेट्टी के किनारे से दूर हट जाओ।"
+ },
  "ml|ശ്രദ്ധിക്കുക, മഞ്ഞ ഷർട്ട് ധരിച്ച വ്യക്തി. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക.": {
   "file": "3cadd45a8deba380d768576a6f6302f19bf83e38.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, മഞ്ഞ ഷർട്ട് ധരിച്ച വ്യക്തി. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക."
+ },
+ "hi|Green shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "3cda947d3999dc5ccd7441dec104e453fd2830d0.mp3",
+  "spoken": "हरी कमीज़, क्या प्यारा रंग है! लेकिन कृपया जेट्टी के किनारे से दूर हट जाइए।"
+ },
+ "kn|Hello there! The sea is closed today. Please step back behind the yellow line.": {
+  "file": "3d33bb02270eafccba72aafe5bdbac849de7ed71.mp3",
+  "spoken": "ನಮಸ್ಕಾರ! ಇಂದು ಸಮುದ್ರವನ್ನು ಮುಚ್ಚಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, ചുവന്ന ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ.": {
+  "file": "3de187718d487fa534313fca849b5d9af8a74a46.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, ചുവന്ന ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ."
  },
  "en|Attention please, you in the black shirt. Please step back behind the yellow line.": {
   "file": "4010917e3b13ce0566e4927d0daf55f2d931e297.mp3",
   "spoken": "Attention please, you in the black shirt. Please step back behind the yellow line."
  },
+ "ml|ഹലോ സുഹൃത്തേ, പച്ച ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ.": {
+  "file": "4056fcce0f3bc45c5e462db516a3a34d57b81739.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, പച്ച ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ."
+ },
  "en|Attention please, you in the green shirt. Please step back behind the yellow line.": {
   "file": "41ef10d7e27b6a98d4e340d0fbd09808b0adac20.mp3",
   "spoken": "Attention please, you in the green shirt. Please step back behind the yellow line."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, ചാരനിറത്തിലുള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "440039543b238b89418be4ac31dd808209badc91.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, ചാരനിറത്തിലുള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
  },
  "hi|Attention please, you in the yellow shirt. Please move away from the jetty edge.": {
   "file": "4400c96411543ceda78029715846bbe56b2eab5f.mp3",
@@ -179,9 +319,17 @@
   "file": "458ed2d4eea3e57d3ba7d7116193c4d7179f10ed.mp3",
   "spoken": "Attention, person near the water's edge. Please step back onto the walkway."
  },
+ "en|Blue shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "45ca19ad2492b71eff11b81a508920cb0fde8412.mp3",
+  "spoken": "Blue shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line."
+ },
  "hi|Attention please, you in the red shirt. Storm warning: the sea is closed. Please step back behind the yellow line.": {
   "file": "46b51a162335e11b0dbd320811d962e03bc974ef.mp3",
   "spoken": "कृपया ध्यान दें, आप लाल शर्ट में हैं। तूफान की चेतावनी: समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाएं।"
+ },
+ "kn|Grey shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "494f9094edbb4db3d97869d3a1047e17e8dc9901.mp3",
+  "spoken": "ಬೂದು ಅಂಗಿ, ಎಂತಹ ಅದ್ಭುತ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
  },
  "hi|Attention please, you in the black shirt. Please move away from the jetty edge.": {
   "file": "49601222e5a4e768395c39a63c09d4eeed2eb2a9.mp3",
@@ -199,6 +347,10 @@
   "file": "4d3adbed2b9840ff228064fc54034848f664441e.mp3",
   "spoken": "ನೀರಿನ ಬಳಿ ಇರುವ ಎಲ್ಲರೂ ಗಮನಿಸಿ. ದಯವಿಟ್ಟು ದಾರಿ ಬಿಟ್ಟು ಕಾಲುದಾರಿಗೆ ಬನ್ನಿ."
  },
+ "kn|White shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "4dc8decca0ae3d03edae5de283ecd5b4d4a8ad59.mp3",
+  "spoken": "ಬಿಳಿ ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ನೀರಿನ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
+ },
  "ml|ശ്രദ്ധിക്കുക, ചുവന്ന ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കുക.": {
   "file": "4e329eaf8de092bfd9ff9f073f57f246f82df69d.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, ചുവന്ന ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കുക."
@@ -211,13 +363,41 @@
   "file": "4fcdc57493dbc585c66c27e2a1c2d92f739557f3.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, ചുവന്ന ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കുക."
  },
+ "en|Black shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "507fdc4183fa767de1fea82243ea0dee57d75d65.mp3",
+  "spoken": "Black shirt, what a lovely colour! But please step away from the jetty edge."
+ },
  "hi|Attention, please. Storm warning: the sea is closed. Please step back behind the yellow line.": {
   "file": "52b51415f00595981e860b139db4a3e1a463b0f2.mp3",
   "spoken": "ध्यान दें, कृपया। तूफान की चेतावनी: समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाएं।"
  },
+ "en|Black shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "52f8950ff5db4c78eb0cd06c22a5d9332ca57a5a.mp3",
+  "spoken": "Black shirt, what a lovely colour! But please step away from the water's edge."
+ },
  "kn|Attention please, you in the red shirt. Please step away from the water's edge.": {
   "file": "5490e58f09ca5ff862247116ca0d75ac4e3ab29f.mp3",
   "spoken": "ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ಕೆಂಪು ಅಂಗಿ ಧರಿಸಿರುವ ನೀವು. ದಯವಿಟ್ಟು ನೀರಿನ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, കറുത്ത ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "57c799628b3a48b5c27cfb7e3cf5d95ecaf53cc0.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, കറുത്ത ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
+ "en|Hello there! Please step away from the jetty edge.": {
+  "file": "57e7162ada9316498a7b85116aab622ff5be96b9.mp3",
+  "spoken": "Hello there! Please step away from the jetty edge."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, മഞ്ഞ ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ.": {
+  "file": "57eeb01f7331d8fabb9126a3659d32eeee2b9513.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, മഞ്ഞ ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, കറുത്ത ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ.": {
+  "file": "584acb7a37707d63ec489d5e6cd17d698d80b9f2.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, കറുത്ത ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ."
+ },
+ "en|Yellow shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "58beda47c3daba24f3d56734e73fe21b826ca00f.mp3",
+  "spoken": "Yellow shirt, what a lovely colour! But please step away from the water's edge."
  },
  "ml|ശ്രദ്ധിക്കുക, വെള്ളത്തിന്റെ അരികിലുള്ള വ്യക്തി. ദയവായി നടപ്പാതയിലേക്ക് മാറി നിൽക്കുക.": {
   "file": "59da4ff9f444590534208424831833f6919935c4.mp3",
@@ -243,13 +423,33 @@
   "file": "5e91c05e326dc35b8927d48e7036a5f95ffaca1d.mp3",
   "spoken": "ಗಮನಿಸಿ, ದಯವಿಟ್ಟು, ಬೂದು ಬಣ್ಣದ ಅಂಗಿ ಧರಿಸಿರುವ ನೀವು ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
  },
+ "hi|Hello there! Please step back from the water's edge.": {
+  "file": "5fc0d4d7a1837cd8a53c63244a6bac27c52b8045.mp3",
+  "spoken": "नमस्ते! कृपया पानी के किनारे से पीछे हट जाओ।"
+ },
+ "hi|Grey shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "616f98e0742d47615072f8c801fe0547151b7b2b.mp3",
+  "spoken": "धूसर रंग की कमीज़, क्या प्यारा रंग है! लेकिन आज समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाइए।"
+ },
  "ml|ശ്രദ്ധിക്കുക, കറുത്ത ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കുക.": {
   "file": "6418951e9fc5e37fb6b4ca6d07df5dc1d466b564.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, കറുത്ത ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കുക."
  },
+ "en|Blue shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "654f95a6a353bba1a613d4bf7d48974eac9492e7.mp3",
+  "spoken": "Blue shirt, what a great colour! But please step back behind the yellow line."
+ },
+ "ml|ഹലോ സുഹൃത്തേ! ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "65616482f8eaf244befd2231ce24913d849774fb.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ! ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
  "ml|ശ്രദ്ധിക്കുക, ചാരനിറത്തിലുള്ള ഷർട്ട് ധരിച്ച വ്യക്തി. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക.": {
   "file": "667d8acb1c4c11c40a00aa829e4ab22f5bb8cddf.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, ചാരനിറത്തിലുള്ള ഷർട്ട് ധരിച്ച വ്യക്തി. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക."
+ },
+ "en|Grey shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "668e792e99fd7b288d9a65de96d87d9647370568.mp3",
+  "spoken": "Grey shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line."
  },
  "en|Attention everyone near the shoreline. Please step back from the restricted area.": {
   "file": "66a041fba0cede328f4dd6b0356d4f70831b7f76.mp3",
@@ -258,6 +458,10 @@
  "hi|Attention please, you in the blue shirt. Please move away from the jetty edge.": {
   "file": "67049dbf4db16855b43498c21336543822acbb79.mp3",
   "spoken": "कृपया ध्यान दें, नीली शर्ट वाली महिला। कृपया जेट्टी के किनारे से हट जाएं।"
+ },
+ "en|Red shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "673c64db1200e317ab9a8b84c37dec787c0d4670.mp3",
+  "spoken": "Red shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line."
  },
  "kn|Attention please, you in the yellow shirt. Please step back behind the yellow line.": {
   "file": "6790ffb0330603b3076c401e3faa7163dcd11f69.mp3",
@@ -271,6 +475,26 @@
   "file": "6ab839beeecf6db6fea0640174f305e38b57e95d.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, വെള്ള ഷർട്ട് ധരിച്ച വ്യക്തി. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക."
  },
+ "ml|ഹലോ സുഹൃത്തേ, ചുവന്ന ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ.": {
+  "file": "6aeadf7804f34744f02aac37919f26303955f473.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, ചുവന്ന ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, നീല ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ.": {
+  "file": "6b8f0c6ca50ec81a0faceb288cbc4ef08474c92b.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, നീല ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ."
+ },
+ "hi|Hello everyone! Let's all stay behind the yellow line.": {
+  "file": "6bf1e0241840021f18b19c702950aff8c86b4ca3.mp3",
+  "spoken": "नमस्ते सब लोग! चलो सब पीली रेखा के पीछे रहें।"
+ },
+ "hi|Hello there! The sea is closed today. Please step back behind the yellow line.": {
+  "file": "6c7ba04c4c9b866b5da3bddb53a23aad77819c88.mp3",
+  "spoken": "नमस्ते! आज समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाइए।"
+ },
+ "ml|ഹലോ എല്ലാവരും! നമുക്ക് മഞ്ഞ വരയ്ക്ക് പിന്നിൽ നിൽക്കാം.": {
+  "file": "6c7bc305eddfb445a95a37ca894523fd917ed8c4.mp3",
+  "spoken": "ഹലോ എല്ലാവരും! നമുക്ക് മഞ്ഞ വരയ്ക്ക് പിന്നിൽ നിൽക്കാം."
+ },
  "en|Attention please, you in the red shirt. Storm warning: the sea is closed. Please step back behind the yellow line.": {
   "file": "6d3737a377291233fe193aec2d86449713c7a5ba.mp3",
   "spoken": "Attention please, you in the red shirt. Storm warning: the sea is closed. Please step back behind the yellow line."
@@ -279,9 +503,21 @@
   "file": "6ededece19678276269019f8e05a685e556555f8.mp3",
   "spoken": "कृपया ध्यान दें, आप, जो भूरी शर्ट पहने हुए हैं। कृपया पानी के किनारे से हट जाएं।"
  },
+ "ml|ഹലോ സുഹൃത്തേ, നീല ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "71266c5e654ea3ec38275931b53c06f4e036fc17.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, നീല ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
  "hi|Attention please, you in the white shirt. Please step away from the water's edge.": {
   "file": "71eaf4ceec513613c334aa0904a9596fc4f45d54.mp3",
   "spoken": "कृपया ध्यान दें, आप, जो सफेद शर्ट में हैं। कृपया पानी के किनारे से हट जाएं।"
+ },
+ "ml|ഹലോ സുഹൃത്തേ, നീല ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ.": {
+  "file": "72571dd55ceba87c1a9e3ef811a012a9fcd92cb2.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, നീല ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ."
+ },
+ "hi|Hello there! Please step back behind the yellow line.": {
+  "file": "73059d5415e0d8abd8c10629d6450d34045b44e7.mp3",
+  "spoken": "नमस्ते! कृपया पीली रेखा के पीछे हट जाइए।"
  },
  "en|Attention please, you in the red shirt. Please move away from the jetty edge.": {
   "file": "736d4d7f74f30fdb1ef8d7af24d5080fef7509ed.mp3",
@@ -291,6 +527,18 @@
   "file": "762b8ecaf4df47727023ef289232e0455b787753.mp3",
   "spoken": "समुद्र तट के पास मौजूद सभी लोग ध्यान दें। कृपया प्रतिबंधित क्षेत्र से पीछे हट जाएं।"
  },
+ "en|White shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "76aa941f822b32724abb74edd08258ad1c5c83d8.mp3",
+  "spoken": "White shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line."
+ },
+ "kn|Hello everyone! Please step away from the jetty edge.": {
+  "file": "76f0e93dc26f4161c48b75f3c2cc3154d70acfd7.mp3",
+  "spoken": "ಎಲ್ಲರಿಗೂ ನಮಸ್ಕಾರ! ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
+ },
+ "en|Hello everyone! Please step back from the water's edge.": {
+  "file": "771945235fcf0e123a7e5b9bc59e01cd3af5abd6.mp3",
+  "spoken": "Hello everyone! Please step back from the water's edge."
+ },
  "hi|Attention please, you in the white shirt. Please step back behind the yellow line.": {
   "file": "77b958ffbf96c7a2102e7f85164d971c05d2dcb8.mp3",
   "spoken": "कृपया ध्यान दें, आप, जो सफ़ेद शर्ट में हैं। कृपया पीली रेखा के पीछे हट जाएं।"
@@ -298,6 +546,10 @@
  "hi|Attention please, you in the yellow shirt. Storm warning: the sea is closed. Please step back behind the yellow line.": {
   "file": "782c6f0724aa7eeb6be2776abb8dcae3f8eadcea.mp3",
   "spoken": "कृपया ध्यान दें, आप, पीली शर्ट में। तूफान की चेतावनी: समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाएं।"
+ },
+ "kn|White shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "78ef8c048bf3b9e85097d69450d44717ac71686f.mp3",
+  "spoken": "ಬಿಳಿ ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ಇಂದು ಸಮುದ್ರ ಮುಚ್ಚಲ್ಪಟ್ಟಿದೆ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
  },
  "hi|Attention please, you in the red shirt. Please move away from the jetty edge.": {
   "file": "794c0db03d3f10c40bc2fc3d00282310602a4d00.mp3",
@@ -311,9 +563,21 @@
   "file": "7f6611912d961a3ba5405291c17cf992ab33e2a1.mp3",
   "spoken": "Attention please, you in the blue shirt. Storm warning: the sea is closed. Please step back behind the yellow line."
  },
+ "en|Green shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "80084f16f8fa523e37c9b18c02c54f8089c1c2c2.mp3",
+  "spoken": "Green shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line."
+ },
  "en|Attention please, you in the grey shirt. Please move away from the jetty edge.": {
   "file": "81281c011227c9d86f1a9ede272fa54cf516a25d.mp3",
   "spoken": "Attention please, you in the grey shirt. Please move away from the jetty edge."
+ },
+ "en|Yellow shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "828b8023315119de9c54795c99c023674491e03a.mp3",
+  "spoken": "Yellow shirt, what a great colour! But please step back behind the yellow line."
+ },
+ "kn|Grey shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "840ace36d9b2c4e1138b714e185b54b034ed2b2e.mp3",
+  "spoken": "ಬೂದು ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ಇಂದು ಸಮುದ್ರ ಮುಚ್ಚಲ್ಪಟ್ಟಿದೆ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
  },
  "kn|Attention please, you in the grey shirt. Storm warning: the sea is closed. Please step back behind the yellow line.": {
   "file": "843d8de5bbdde53fc57d1ea28a7f7a88806e7530.mp3",
@@ -326,6 +590,14 @@
  "hi|Attention please, you in the grey shirt. Please step back behind the yellow line.": {
   "file": "8506ac94a8c793c450642ac3fcb8d94ae18b6faa.mp3",
   "spoken": "कृपया ध्यान दें, आप, जो ग्रे शर्ट में हैं। कृपया पीली रेखा के पीछे हट जाएं।"
+ },
+ "en|Blue shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "85d9f642d769983d888530436890b990d79dba41.mp3",
+  "spoken": "Blue shirt, what a lovely colour! But please step away from the jetty edge."
+ },
+ "ml|ഹലോ സുഹൃത്തേ! ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "865daa61615367abd6f3553c9727fccead66ecaa.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ! ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
  },
  "kn|Attention please, you in the grey shirt. Please step back behind the yellow line.": {
   "file": "8a567812a609e5014e5336147879edb3cd519fa5.mp3",
@@ -343,6 +615,18 @@
   "file": "8ba58aaead6b848ec9ca358e69cf0895996cf250.mp3",
   "spoken": "ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ಬಿಳಿ ಅಂಗಿ ಧರಿಸಿರುವ ನೀವು. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
  },
+ "kn|Black shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "8d4b7a9c8f71431359bca4af6b3ca8a554df0bfc.mp3",
+  "spoken": "ಕಪ್ಪು ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
+ },
+ "ml|ഹലോ എല്ലാവരും! ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ.": {
+  "file": "8e6dd2fbf580300fe34fdfc461b6600a1fc20ccd.mp3",
+  "spoken": "ഹലോ എല്ലാവരും! ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ."
+ },
+ "en|Red shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "8eb1866dd022b6754afe7adc090376cf749849de.mp3",
+  "spoken": "Red shirt, what a lovely colour! But please step away from the jetty edge."
+ },
  "kn|Attention passengers near the platform edge. Please step back behind the yellow line.": {
   "file": "8f0f5eb3401301937f4a22b9cf3f6fe5effabf83.mp3",
   "spoken": "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಅಂಚಿನ ಬಳಿ ಇರುವ ಪ್ರಯಾಣಿಕರೇ ಗಮನಿಸಿ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
@@ -350,6 +634,14 @@
  "kn|Attention please, you in the green shirt. Please move away from the jetty edge.": {
   "file": "8fd67181f9c1524cab1b2c0458a24d337b4ecd83.mp3",
   "spoken": "ಗಮನಿಸಿ, ದಯವಿಟ್ಟು, ಹಸಿರು ಅಂಗಿ ಧರಿಸಿರುವ ನೀವು. ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
+ },
+ "hi|Green shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "9145b466e4cbd61552a3553e044162aa215dd750.mp3",
+  "spoken": "हरी कमीज़, क्या शानदार रंग है! लेकिन कृपया पीली रेखा के पीछे हट जाओ।"
+ },
+ "kn|Green shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "915e6e842a8f531513aa0c84da58f6bfaa406714.mp3",
+  "spoken": "ಹಸಿರು ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ಇಂದು ಸಮುದ್ರ ಮುಚ್ಚಲ್ಪಟ್ಟಿದೆ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
  },
  "ml|ശ്രദ്ധിക്കുക, മഞ്ഞ ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കുക.": {
   "file": "91a4cae8a06f84b8c52fef05d38847a08cd62b68.mp3",
@@ -379,6 +671,10 @@
   "file": "94175d84954f03c87ea6f796ff24c360a31231b9.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, പച്ച ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കുക."
  },
+ "en|Blue shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "943b7df38e3b6d99d7b602f7eb007da4eb5e6346.mp3",
+  "spoken": "Blue shirt, what a lovely colour! But please step away from the water's edge."
+ },
  "ml|ശ്രദ്ധിക്കുക, പച്ച ഷർട്ട് ധരിച്ച വ്യക്തി. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക.": {
   "file": "94ff658ea29979f14468113761a410c77213f480.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, പച്ച ഷർട്ട് ധരിച്ച വ്യക്തി. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക."
@@ -386,6 +682,14 @@
  "en|Attention please, you in the yellow shirt. Please move away from the jetty edge.": {
   "file": "9514d4869654871a9b11848d97f2b6477e891911.mp3",
   "spoken": "Attention please, you in the yellow shirt. Please move away from the jetty edge."
+ },
+ "hi|White shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "96f2a1de054cf7aeb9df8cc181b2e9d0b60ff09a.mp3",
+  "spoken": "सफेद शर्ट, क्या प्यारा रंग है! लेकिन कृपया पानी के किनारे से दूर हट जाओ।"
+ },
+ "kn|Red shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "97cb3c6914871ab6f86dd58725776b5f1366547d.mp3",
+  "spoken": "ಕೆಂಪು ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
  },
  "ml|ശ്രദ്ധിക്കുക, പച്ച ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കുക.": {
   "file": "9833894fd71694e8ff72d543101f676bb4e36a26.mp3",
@@ -395,6 +699,18 @@
   "file": "992fc1f0e3906b91804d9eb693af6e98034075cc.mp3",
   "spoken": "Attention please, you in the black shirt. Please move away from the jetty edge."
  },
+ "hi|Green shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "9a070bbcfde65a91fa3e1ec88d060ea5138f7c78.mp3",
+  "spoken": "हरी कमीज़, क्या प्यारा रंग है! लेकिन आज समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाइए।"
+ },
+ "hi|Yellow shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "9a288420c7fd6bfc90798837e899338cb00d8961.mp3",
+  "spoken": "पीली कमीज़, क्या प्यारा रंग है! लेकिन आज समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाइए।"
+ },
+ "ml|ഹലോ സുഹൃത്തേ, ചാരനിറത്തിലുള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "9bfed79863555f351e8977f358d847e6837d0289.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, ചാരനിറത്തിലുള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
  "hi|Attention everyone near the jetty. Please move away from the edge.": {
   "file": "9ccc9ee4eda290ed0d3bfa677a65c335c08acb6a.mp3",
   "spoken": "जेटी के पास मौजूद सभी लोग ध्यान दें। कृपया किनारे से हट जाएं।"
@@ -403,13 +719,37 @@
   "file": "9ddb347e28c5b0f2228b000a8bd02bffffff96bd.mp3",
   "spoken": "Attention please, you in the red shirt. Please step back behind the yellow line."
  },
+ "en|Hello everyone! Let's all stay behind the yellow line.": {
+  "file": "9e2783e8ee50c127339d359ddadd70b8221b0e4d.mp3",
+  "spoken": "Hello everyone! Let's all stay behind the yellow line."
+ },
  "ml|ശ്രദ്ധിക്കുക, പ്ലാറ്റ്ഫോമിന്റെ അരികിലുള്ള വ്യക്തി. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കുക.": {
   "file": "9f6e9ae7f8f8631b49ba38d2b1cd539520680622.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, പ്ലാറ്റ്ഫോമിന്റെ അരികിലുള്ള വ്യക്തി. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കുക."
  },
+ "kn|Grey shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "a0a5acad8b854159deb744b494621d5adc48f5d9.mp3",
+  "spoken": "ಬೂದು ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
+ },
  "kn|Attention, please. Storm warning: the sea is closed. Please step back behind the yellow line.": {
   "file": "a0d1aae8491331a1562d1703815430a55dba541c.mp3",
   "spoken": "ಗಮನಿಸಿ, ದಯವಿಟ್ಟು. ಬಿರುಗಾಳಿಯ ಎಚ್ಚರಿಕೆ: ಸಮುದ್ರವನ್ನು ಮುಚ್ಚಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
+ "hi|Hello everyone! Please step away from the jetty edge.": {
+  "file": "a43f6e2587f10096ef6f98755aeef0717ae92efb.mp3",
+  "spoken": "नमस्ते सब लोग! कृपया जेट्टी के किनारे से हट जाओ।"
+ },
+ "en|Grey shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "a5013511758924b3edd9416231ef993172fb466d.mp3",
+  "spoken": "Grey shirt, what a great colour! But please step back behind the yellow line."
+ },
+ "en|Hello there! The sea is closed today. Please step back behind the yellow line.": {
+  "file": "a54b5764b3c3488a8b07ac736cff0756fad90903.mp3",
+  "spoken": "Hello there! The sea is closed today. Please step back behind the yellow line."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, കറുത്ത ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ.": {
+  "file": "a54b9b8504d7cbd622d98391fa4951797ee2bd2b.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, കറുത്ത ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ."
  },
  "ml|ശ്രദ്ധിക്കുക, എല്ലാവരും ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കുക.": {
   "file": "a569cb24d7ea21d657ff8dac024e014d4270446b.mp3",
@@ -418,6 +758,10 @@
  "kn|Attention, person near the water's edge. Please step back onto the walkway.": {
   "file": "a695c7f4a51e6142c80e556e824a9ba02d8e8fb9.mp3",
   "spoken": "ಗಮನಿಸಿ, ನೀರಿನ ಅಂಚಿನ ಬಳಿ ಇರುವ ವ್ಯಕ್ತಿ. ದಯವಿಟ್ಟು ಕಾಲುದಾರಿಗೆ ಹಿಂತಿರುಗಿ."
+ },
+ "kn|White shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "a6d4b5e7aab91f97321f3c63a996d0bf8022cf96.mp3",
+  "spoken": "ಬಿಳಿ ಅಂಗಿ, ಎಂತಹ ಸುಂದರವಾದ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
  },
  "en|Attention please, you in the black shirt. Storm warning: the sea is closed. Please step back behind the yellow line.": {
   "file": "a79c0222ca366de62f80097e3f520b13c64c3943.mp3",
@@ -431,25 +775,117 @@
   "file": "a7b898319bd6e8df11d2c3abaf061a7973b98171.mp3",
   "spoken": "ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ಕೆಂಪು ಅಂಗಿ ಧರಿಸಿರುವ ನೀವು. ಬಿರುಗಾಳಿಯ ಎಚ್ಚರಿಕೆ: ಸಮುದ್ರವು ಮುಚ್ಚಲ್ಪಟ್ಟಿದೆ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
  },
+ "kn|Yellow shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "aaeb945e66e0b00eba8c778b88996b88b1d7d50f.mp3",
+  "spoken": "ಹಳದಿ ಅಂಗಿ, ಎಂತಹ ಅದ್ಭುತ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
  "hi|Attention please, you in the grey shirt. Storm warning: the sea is closed. Please step back behind the yellow line.": {
   "file": "aba605c858d941c9ce3ea87f35e7fdc4eb7fa3f2.mp3",
   "spoken": "कृपया ध्यान दें, आप, जो ग्रे शर्ट में हैं। तूफान की चेतावनी: समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाएं।"
+ },
+ "kn|Grey shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "aba7fab794059a3b3f28426187527720ca37c679.mp3",
+  "spoken": "ಬೂದು ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ನೀರಿನ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
  },
  "kn|Attention please, you in the black shirt. Please step back behind the yellow line.": {
   "file": "abf6292fab7165c73fcb967f1ff44a6df01e2198.mp3",
   "spoken": "ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ಕಪ್ಪು ಅಂಗಿ ಧರಿಸಿರುವ ನೀವು. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
  },
+ "kn|Black shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "adfc91b36a867f74e10f4c6426962b11f3d224b9.mp3",
+  "spoken": "ಕಪ್ಪು ಅಂಗಿ, ಎಂತಹ ಅದ್ಭುತ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
+ "ml|ഹലോ സുഹൃത്തേ! ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ.": {
+  "file": "ae17ffa11cf1dac38aff728f2ea6435acbeffca6.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ! ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ."
+ },
+ "kn|Hello there! Please step back from the water's edge.": {
+  "file": "ae727b414124cffb2bba40970fd067336af93fff.mp3",
+  "spoken": "ನಮಸ್ಕಾರ! ದಯವಿಟ್ಟು ನೀರಿನ ಅಂಚಿನಿಂದ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
+ "kn|Yellow shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "af00b74bb2f9eb1a89fd1a5b8c53115ed5ab666b.mp3",
+  "spoken": "ಹಳದಿ ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ಇಂದು ಸಮುದ್ರ ಮುಚ್ಚಲ್ಪಟ್ಟಿದೆ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
  "en|Attention please, you in the grey shirt. Please step back behind the yellow line.": {
   "file": "b0bae7eb230c208499ad7a73864c464d26c7ec2d.mp3",
   "spoken": "Attention please, you in the grey shirt. Please step back behind the yellow line."
+ },
+ "en|White shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "b221af3b7a3082c3f42270b6e9d9c7d9a52d4af4.mp3",
+  "spoken": "White shirt, what a lovely colour! But please step away from the water's edge."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, പച്ച ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "b2c8c33ca5eea9b6999b0aa9868b31c66612dcd0.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, പച്ച ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
+ "en|Hello there! Please step back from the water's edge.": {
+  "file": "b35d322fb3993ef440b7ca4a261ff8a085617da8.mp3",
+  "spoken": "Hello there! Please step back from the water's edge."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, വെള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ.": {
+  "file": "b3b0247a847ad931162735c9f3faa24af1182113.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, വെള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ."
+ },
+ "en|Grey shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "b4728926585037041a793b01fb134d58ceba3139.mp3",
+  "spoken": "Grey shirt, what a lovely colour! But please step away from the water's edge."
+ },
+ "kn|Blue shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "b5b3f5cdc48111e34813c78e015dc816c2eeba3f.mp3",
+  "spoken": "ನೀಲಿ ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ಇಂದು ಸಮುದ್ರ ಮುಚ್ಚಲ್ಪಟ್ಟಿದೆ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, നീല ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "b62bd1943079806db54780c0992b6d82e2a693ba.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, നീല ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
+ "en|Yellow shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "b657e34ec4b89f85c24b2877364c23540bf749fb.mp3",
+  "spoken": "Yellow shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line."
  },
  "ml|ശ്രദ്ധിക്കുക, മഞ്ഞ ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കുക.": {
   "file": "b6a84af15853afb4e1761b227960c7553e279cf8.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, മഞ്ഞ ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കുക."
  },
+ "ml|ഹലോ സുഹൃത്തേ, പച്ച ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "b703fb1274a1bc206c52449776146fd3c4383538.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, പച്ച ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
+ "kn|Hello everyone! The sea is closed today. Please step back behind the yellow line.": {
+  "file": "b8c349a5967475406a1471781c7eb4efd506deae.mp3",
+  "spoken": "ಎಲ್ಲರಿಗೂ ನಮಸ್ಕಾರ! ಇಂದು ಸಮುದ್ರವನ್ನು ಮುಚ್ಚಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
+ "hi|Black shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "bb24fdad78d434083e56894a462efdaf5e9beb74.mp3",
+  "spoken": "काली कमीज़, क्या प्यारा रंग है! लेकिन कृपया पानी के किनारे से दूर हट जाओ।"
+ },
+ "en|Red shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "bbad6c87f6e02339bb495c7d4fec9fd10136a823.mp3",
+  "spoken": "Red shirt, what a lovely colour! But please step away from the water's edge."
+ },
+ "kn|Red shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "bc1cb7f901b179bf0ba3126a7b874c204d6d7213.mp3",
+  "spoken": "ಕೆಂಪು ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ನೀರಿನ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
+ },
  "ml|ശ്രദ്ധിക്കുക, നീല ഷർട്ട് ധരിച്ച വ്യക്തി. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക.": {
   "file": "bc60e6d071872613ebea3df0d52a45675a0d42c4.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, നീല ഷർട്ട് ധരിച്ച വ്യക്തി. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, ചുവന്ന ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "bc700833a2aa8935f3c67e6838ddc03df2c70f4b.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, ചുവന്ന ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
+ "en|Black shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "bcfaae4be1c859ac0916bc8248d5bff690efae8a.mp3",
+  "spoken": "Black shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line."
+ },
+ "hi|Black shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "bd6a0a91d987aed68460b73abc31b51b948d5e8c.mp3",
+  "spoken": "काली कमीज़, क्या प्यारा रंग है! लेकिन कृपया जेट्टी के किनारे से दूर हट जाइए।"
+ },
+ "en|Yellow shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "becd8ef5b20d30d14b0c774a579444534871e241.mp3",
+  "spoken": "Yellow shirt, what a lovely colour! But please step away from the jetty edge."
  },
  "hi|Attention please, you in the red shirt. Please step back behind the yellow line.": {
   "file": "bee1694e553431ae6bf1b284347dab22f7506070.mp3",
@@ -459,6 +895,18 @@
   "file": "c6af01d70d220928954a0e86d7f8b6f2aa60a9c2.mp3",
   "spoken": "ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ಬಿಳಿ ಅಂಗಿ ಧರಿಸಿರುವ ನೀವು. ಬಿರುಗಾಳಿಯ ಎಚ್ಚರಿಕೆ: ಸಮುದ್ರವು ಮುಚ್ಚಲ್ಪಟ್ಟಿದೆ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
  },
+ "ml|ഹലോ സുഹൃത്തേ, ചുവന്ന ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "c6bea8b26fb0dec5b2d7a0dd60c3faa42161e4c7.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, ചുവന്ന ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
+ "ml|ഹലോ എല്ലാവരും! ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "c6c33be65c1a6758a7c80e7c50c009e5b304220d.mp3",
+  "spoken": "ഹലോ എല്ലാവരും! ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
+ "en|Hello everyone! The sea is closed today. Please step back behind the yellow line.": {
+  "file": "c7a8367f8dbf09b064e0dcbd91aba7fff70fa680.mp3",
+  "spoken": "Hello everyone! The sea is closed today. Please step back behind the yellow line."
+ },
  "ml|ശ്രദ്ധിക്കുക. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക.": {
   "file": "c7affbd14317c133550f1370f999ea4d34bf023c.mp3",
   "spoken": "ശ്രദ്ധിക്കുക. കൊടുങ്കാറ്റ് മുന്നറിയിപ്പ്: കടലിൽ ഇറങ്ങുന്നത് നിരോധിച്ചിരിക്കുന്നു. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറുക."
@@ -467,13 +915,33 @@
   "file": "c807b7cacdc1065469f17858c43161f9a118335c.mp3",
   "spoken": "Attention please, you in the blue shirt. Please step back behind the yellow line."
  },
+ "en|White shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "c8a2211aea2d82bb97cf4d8379076184ef363291.mp3",
+  "spoken": "White shirt, what a lovely colour! But please step away from the jetty edge."
+ },
  "ml|ശ്രദ്ധിക്കുക, ചാരനിറത്തിലുള്ള ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കുക.": {
   "file": "c8de47bbcd27866c55e0b78611843580686408fa.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, ചാരനിറത്തിലുള്ള ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കുക."
  },
+ "kn|Blue shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "c98d5d33d4bdae8a0ac5da48da9f5802be48ddf1.mp3",
+  "spoken": "ನೀಲಿ ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, വെള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "ca714831179af81ce40e2009a1342d50100fbc94.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, വെള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
  "ml|ശ്രദ്ധിക്കുക, പച്ച ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കുക.": {
   "file": "cbc48fbe69b300e7d745bbf0507baf741c885c4c.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, പച്ച ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കുക."
+ },
+ "kn|Hello everyone! Please step back from the water's edge.": {
+  "file": "cd7322de84df85f735fd93eee52933357c66244b.mp3",
+  "spoken": "ಎಲ್ಲರಿಗೂ ನಮಸ್ಕಾರ! ದಯವಿಟ್ಟು ನೀರಿನ ಅಂಚಿನಿಂದ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
+ "kn|Hello there! Please step away from the jetty edge.": {
+  "file": "cde16640beae62f6a59fec8573b03fdb560c12ac.mp3",
+  "spoken": "ನಮಸ್ಕಾರ! ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
  },
  "en|Attention please, you in the blue shirt. Please step away from the water's edge.": {
   "file": "d1ba1f2ad555d57f084423ee739ddda8aba4738c.mp3",
@@ -483,9 +951,21 @@
   "file": "d28e1502fb24950571f5ccea5f187b79969acd48.mp3",
   "spoken": "ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ನೀಲಿ ಅಂಗಿ ಧರಿಸಿರುವ ನೀವು. ದಯವಿಟ್ಟು ನೀರಿನ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
  },
+ "hi|Red shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "d2f19b853238983793c289d85620730c669d1b36.mp3",
+  "spoken": "लाल शर्ट, क्या शानदार रंग है! लेकिन कृपया पीली रेखा के पीछे हट जाओ।"
+ },
+ "hi|Blue shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "d36318c92d55bef145c6177f7b9676335a806589.mp3",
+  "spoken": "नीली कमीज़, क्या प्यारा रंग है! लेकिन कृपया पानी के किनारे से दूर हट जाओ।"
+ },
  "en|Attention passengers near the platform edge. Please step back behind the yellow line.": {
   "file": "d4b411fef03535691bdd4d7d1975eeb6f5eea4bb.mp3",
   "spoken": "Attention passengers near the platform edge. Please step back behind the yellow line."
+ },
+ "kn|Blue shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "d4b7b60f26ef110c452336b0f055ecc1e9cb4c07.mp3",
+  "spoken": "ನೀಲಿ ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ನೀರಿನ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
  },
  "hi|Attention please, you near the jetty edge. Please move away from the water.": {
   "file": "d4fe6bf3895d5a1c2b09ee625943820e2055b2c1.mp3",
@@ -495,6 +975,10 @@
   "file": "d5d0e0a11a6d30f13a3e9ada152df86c075deb8e.mp3",
   "spoken": "ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ಬಿಳಿ ಅಂಗಿ ಧರಿಸಿರುವ ನೀವು. ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
  },
+ "hi|Red shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "d63441eb0a1a52ee4e3fdce70d440aa93c006768.mp3",
+  "spoken": "लाल कमीज़, क्या प्यारा रंग है! लेकिन आज समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाइए।"
+ },
  "hi|Attention please, you in the white shirt. Storm warning: the sea is closed. Please step back behind the yellow line.": {
   "file": "d664c06a9bafe27cd73a85cab30a076dc8e05860.mp3",
   "spoken": "कृपया ध्यान दें, आप, जो सफेद शर्ट में हैं। तूफान की चेतावनी: समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाएं।"
@@ -502,6 +986,14 @@
  "ml|ശ്രദ്ധിക്കുക, കറുത്ത ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കുക.": {
   "file": "d6d97b664f920a5c4132766962a97daf8334b7e1.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, കറുത്ത ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കുക."
+ },
+ "kn|Black shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "d6f56a0a15b445425ad10a29328a481eac678b7a.mp3",
+  "spoken": "ಕಪ್ಪು ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ಇಂದು ಸಮುದ್ರ ಮುಚ್ಚಲ್ಪಟ್ಟಿದೆ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
+ "hi|Red shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "d7486c38ee1abbb49aeb399d60ea69a10d937f2c.mp3",
+  "spoken": "लाल कमीज़, क्या प्यारा रंग है! लेकिन कृपया पानी के किनारे से दूर हट जाओ।"
  },
  "ml|ശ്രദ്ധിക്കുക, ചാരനിറത്തിലുള്ള ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കുക.": {
   "file": "d76f1f45604905ecb3f410f3a4cb21139a56a135.mp3",
@@ -511,9 +1003,21 @@
   "file": "d7fea622bf1bd8ab1a672db70f690baec17bb349.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, കറുത്ത ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കുക."
  },
+ "kn|Green shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "d84be6a9bb1092e59f2f52c13bbc6a47528bbe6f.mp3",
+  "spoken": "ಹಸಿರು ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ನೀರಿನ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
+ },
  "en|Attention please, you in the grey shirt. Storm warning: the sea is closed. Please step back behind the yellow line.": {
   "file": "d8dc07f836449931c9d541c09756a3452fe58b32.mp3",
   "spoken": "Attention please, you in the grey shirt. Storm warning: the sea is closed. Please step back behind the yellow line."
+ },
+ "kn|Black shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "d953d46efe3262c56f4438d501cc002fe43ca081.mp3",
+  "spoken": "ಕಪ್ಪು ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ನೀರಿನ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
+ },
+ "ml|ഹലോ എല്ലാവരും! ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "d9dd61e5ee309b86f9969a3afe7f34fd24db6042.mp3",
+  "spoken": "ഹലോ എല്ലാവരും! ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
  },
  "hi|Attention passengers near the platform edge. Please step back behind the yellow line.": {
   "file": "da805acd300443d87e6a570787eb5e3dc3ad0bf5.mp3",
@@ -523,9 +1027,25 @@
   "file": "da95eff77a1bfc7ff11c63015a2b63db39cf0711.mp3",
   "spoken": "ശ്രദ്ധിക്കുക, വെള്ള ഷർട്ട് ധരിച്ച വ്യക്തി. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കുക."
  },
+ "hi|Yellow shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "daa5a13d80baf15ebd452f143c5bbefac78380ce.mp3",
+  "spoken": "पीली कमीज़, क्या प्यारा रंग है! लेकिन कृपया पानी के किनारे से दूर हट जाओ।"
+ },
+ "hi|Blue shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "dc14b1f7d7bf6f797e387523882c6bd5ec76a7a3.mp3",
+  "spoken": "नीली कमीज़, क्या प्यारा रंग है! लेकिन आज समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाइए।"
+ },
+ "hi|Black shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "de5f89cab09c4e2ba446c709f26575c0c5360d72.mp3",
+  "spoken": "काली कमीज़, क्या शानदार रंग है! लेकिन कृपया पीली रेखा के पीछे हट जाओ।"
+ },
  "hi|Attention everyone near the water. Please step back onto the walkway.": {
   "file": "de851380d72f15c324f7b2f268f47c400e22a6b3.mp3",
   "spoken": "पानी के पास मौजूद सभी लोग ध्यान दें। कृपया पीछे हटकर रास्ते पर आ जाएं।"
+ },
+ "hi|Red shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "decfec3a364dce12b96261a9b72638016e9b3be9.mp3",
+  "spoken": "लाल कमीज़, क्या प्यारा रंग है! लेकिन कृपया जेट्टी के किनारे से दूर हट जाओ।"
  },
  "kn|Attention please, you in the green shirt. Storm warning: the sea is closed. Please step back behind the yellow line.": {
   "file": "df19ed7d8ca8daed4e2cbd975e1289df638f00f1.mp3",
@@ -543,9 +1063,17 @@
   "file": "e5668f785d8e023cab09c0d74417ed1f04b47343.mp3",
   "spoken": "कृपया ध्यान दें, नीली शर्ट वाली महिला। तूफान की चेतावनी: समुद्र बंद है। कृपया पीली रेखा के पीछे हट जाएं।"
  },
+ "kn|Green shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "e56ccca678d5b4f06c80290fa6051346e0d19495.mp3",
+  "spoken": "ಹಸಿರು ಅಂಗಿ, ಎಂತಹ ಅದ್ಭುತ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
  "en|Attention please, you in the black shirt. Please step away from the water's edge.": {
   "file": "e59a13d24941c860df0557dcef5b3f0d38f89634.mp3",
   "spoken": "Attention please, you in the black shirt. Please step away from the water's edge."
+ },
+ "hi|Grey shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "e5d683f9ff867d03b4c8481fe2ae1ab44bb81679.mp3",
+  "spoken": "धूसर शर्ट, क्या शानदार रंग है! लेकिन कृपया पीली रेखा के पीछे हट जाओ।"
  },
  "en|Attention, please. Storm warning: the sea is closed. Please step back behind the yellow line.": {
   "file": "e7197f759f40dd1ef316b39ed374c3c02cb46dec.mp3",
@@ -555,17 +1083,49 @@
   "file": "e9104932165b0dd8a9417c7af0dc00e654f2a994.mp3",
   "spoken": "ಗಮನಿಸಿ, ದಯವಿಟ್ಟು ನೀವು ಜೆಟ್ಟಿ ಅಂಚಿನ ಬಳಿ ಇದ್ದೀರಿ. ದಯವಿಟ್ಟು ನೀರಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
  },
+ "ml|ഹലോ സുഹൃത്തേ, പച്ച ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ.": {
+  "file": "e95f3348a9263829661930911d11d548a393c1e1.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, പച്ച ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ."
+ },
  "kn|Attention please, you near the platform edge. Please step back behind the yellow line.": {
   "file": "ea6cb7d295eb3db7d1cdea089f10e10c40213cde.mp3",
   "spoken": "ಗಮನಿಸಿ, ದಯವಿಟ್ಟು ನೀವು ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಅಂಚಿನ ಬಳಿ ಇದ್ದೀರಿ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
+ "hi|Blue shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "ec5db40dba09cc9912f4328633cc9304175c2c70.mp3",
+  "spoken": "नीली शर्ट, क्या शानदार रंग है! लेकिन कृपया पीली रेखा के पीछे हट जाओ।"
  },
  "en|Attention please, you in the white shirt. Please step back behind the yellow line.": {
   "file": "ec73ceeb56462f19d58e2858f9ac5699c3b76d04.mp3",
   "spoken": "Attention please, you in the white shirt. Please step back behind the yellow line."
  },
+ "kn|Red shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.": {
+  "file": "ecccb58f726fc192649cc46acf1246c11b027bbf.mp3",
+  "spoken": "ಕೆಂಪು ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ಇಂದು ಸಮುದ್ರ ಮುಚ್ಚಲ್ಪಟ್ಟಿದೆ. ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
+ "en|Green shirt, what a lovely colour! But please step away from the water's edge.": {
+  "file": "ee383b8126bd07c21839e9b99931924259d9334d.mp3",
+  "spoken": "Green shirt, what a lovely colour! But please step away from the water's edge."
+ },
  "en|Attention everyone near the jetty. Please move away from the edge.": {
   "file": "ee40cbbb91f69c3c3c5ea35888bf35ce516b6c03.mp3",
   "spoken": "Attention everyone near the jetty. Please move away from the edge."
+ },
+ "en|Green shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "f0472d5fa0c5a9151eed5cb6fee42dcf0c692442.mp3",
+  "spoken": "Green shirt, what a great colour! But please step back behind the yellow line."
+ },
+ "kn|White shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "f0e86603a74dba9c30fac3ca8e14a8e22b4f56af.mp3",
+  "spoken": "ಬಿಳಿ ಅಂಗಿ, ಎಂತಹ ಅದ್ಭುತ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಹಳದಿ ಗೆರೆಯ ಹಿಂದೆ ಸರಿಯಿರಿ."
+ },
+ "hi|Blue shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "f18ea2f5c2584824ef77c21cb12c018d2ac7501e.mp3",
+  "spoken": "नीली कमीज़, क्या प्यारा रंग है! लेकिन कृपया घाट के किनारे से दूर हट जाओ।"
+ },
+ "ml|ഹലോ സുഹൃത്തേ, ചാരനിറത്തിലുള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ.": {
+  "file": "f38fc0e0935f70135dcea31be18b26471141661d.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, ചാരനിറത്തിലുള്ള ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ."
  },
  "hi|Attention please, you near the platform edge. Please step back behind the yellow line.": {
   "file": "f4a34caeacdb4087db3a572a2ba01b56942e3d37.mp3",
@@ -574,5 +1134,21 @@
  "en|Attention please, you in the blue shirt. Please move away from the jetty edge.": {
   "file": "f7c22e97b225ff65dcec3c2d580581de4082f43e.mp3",
   "spoken": "Attention please, you in the blue shirt. Please move away from the jetty edge."
+ },
+ "ml|ഹലോ സുഹൃത്തേ, മഞ്ഞ ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.": {
+  "file": "fad9d97da8be5a40d4e431434719ef79914b3d48.mp3",
+  "spoken": "ഹലോ സുഹൃത്തേ, മഞ്ഞ ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ."
+ },
+ "hi|Grey shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "fdeccae7e92e2738e1b8c7aee795e085ff6fd7e5.mp3",
+  "spoken": "धूसर कमीज़, क्या प्यारा रंग है! लेकिन कृपया जेट्टी के किनारे से हट जाओ।"
+ },
+ "kn|Green shirt, what a lovely colour! But please step away from the jetty edge.": {
+  "file": "ff58da959c988482b0353859403cf2f9efe4e051.mp3",
+  "spoken": "ಹಸಿರು ಅಂಗಿ, ಎಂತಹ ಸುಂದರ ಬಣ್ಣ! ಆದರೆ ದಯವಿಟ್ಟು ಜೆಟ್ಟಿ ಅಂಚಿನಿಂದ ದೂರ ಸರಿಯಿರಿ."
+ },
+ "en|White shirt, what a great colour! But please step back behind the yellow line.": {
+  "file": "ff6ea42c1b03d4ae1bd8f0dc4776f3d119a682b6.mp3",
+  "spoken": "White shirt, what a great colour! But please step back behind the yellow line."
  }
 }

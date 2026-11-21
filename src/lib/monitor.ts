@@ -1,4 +1,4 @@
-import type { Detection, EnvironmentPreset, Language, Pt, SafetyZone, ZoneState } from '../types'
+import type { Detection, EnvironmentPreset, Language, Tone, Pt, SafetyZone, ZoneState } from '../types'
 import { VisionEngine, type DetectorQuality } from './vision'
 import { Tracker } from './tracker'
 import { SafetyEngine, type SafetyEvent } from './safety'
@@ -28,6 +28,7 @@ export interface Settings {
   preAnalyse: boolean
   /** Lifeguard switch: storm = water entry forbidden (red + voice). Off = yellow line is advisory (amber only). */
   stormMode: boolean
+  tone: Tone
 }
 
 export interface LogEntry { id: number; t: number; kind: 'breach' | 'resolved' | 'unresolved' | 'lost' | 'warning'; personId: string; text: string }
@@ -322,6 +323,32 @@ export class Monitor {
     if (this.video.paused) void this.video.play(); else this.video.pause()
   }
   seek(t: number) { this.video.currentTime = t; this.resetScene() }
+
+  /**
+   * Demo deep link: advance a pre-analysed clip to time t (seconds into the clip) by replaying
+   * the real cached detections frame by frame, so colours, states and incidents match live playback.
+   */
+  async jumpTo(t: number) {
+    const v = this.video, cache = this.cache
+    if (!cache || this.snap.source !== 'video') return
+    v.pause()
+    this.resetScene()
+    const audio = this.settings.audio
+    this.settings.audio = false // no voice while fast-forwarding
+    const aspect = v.videoWidth / v.videoHeight
+    const last = Math.min(cache.frames.length - 1, Math.floor(t / cache.step))
+    for (let i = 0; i <= last; i++) {
+      v.currentTime = Math.min(this.range.start + i * cache.step, this.range.end - 0.01)
+      await new Promise<void>((r) => { v.onseeked = () => r() })
+      this.vision.capture(v, false)
+      this.sceneNow += cache.step * 1000
+      this.onDetections((cache.frames[i] ?? []).filter((d) => d.score >= this.settings.minScore || d.landmarks), this.sceneNow, aspect, false)
+    }
+    v.onseeked = null
+    this.lastCacheIdx = last
+    this.lastVideoTime = v.currentTime
+    this.settings.audio = audio
+  }
   setRate(r: number) { this.video.playbackRate = r }
 
   private generation = 0
@@ -482,8 +509,8 @@ export class Monitor {
         const lang = this.settings.language
         this.voice.request({
           personId: t.id, lang,
-          text: warningText(p, lang, color), enText: warningText(p, 'en', color),
-          groupText: groupText(p, lang), groupEnText: p.warningMessages.en.group,
+          text: warningText(p, lang, color, this.settings.tone), enText: warningText(p, 'en', color, this.settings.tone),
+          groupText: groupText(p, lang, this.settings.tone), groupEnText: groupText(p, 'en', this.settings.tone),
         })
       }
     } else if (e.type === 'unresolved') {

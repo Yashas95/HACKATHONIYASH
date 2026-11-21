@@ -40,7 +40,7 @@ export function ControlStrip(p: Props) {
       <div className="seg" role="group" aria-label="Environment">
         {PRESETS.map((pr) => {
           const Icon = ICON[pr.id]
-          return <button key={pr.id} data-on={s.preset.id === pr.id} onClick={() => p.onPreset(pr)} title={pr.name}><Icon size={14} /><span className="hidden xl:inline">{pr.name}</span></button>
+          return <button key={pr.id} data-on={s.preset.id === pr.id} onClick={() => p.onPreset(pr)} title={pr.name}><Icon size={14} /><span className="hidden 2xl:inline">{pr.name}</span></button>
         })}
       </div>
 
@@ -60,6 +60,10 @@ export function ControlStrip(p: Props) {
         title="Lifeguard control. Storm: entering the water is forbidden (red + voice warning). Normal: the yellow line is advisory (amber only).">
         {s.stormMode ? 'Storm · water closed' : 'Normal · advisory'}
       </button>
+      <button className="btn" onClick={() => p.set({ tone: s.tone === 'friendly' ? 'formal' : 'friendly' })}
+        title="Friendly: compliments the outfit to grab attention. Formal: plain announcement.">
+        {s.tone === 'friendly' ? 'Tone · friendly' : 'Tone · formal'}
+      </button>
 
       <div className="seg" role="group" aria-label="Voice language">
         {LANGUAGES.map((l) => (
@@ -78,17 +82,17 @@ export function ControlStrip(p: Props) {
       )}
 
       <div className="ml-auto flex items-center gap-2">
-        {snap.source === 'video' && live && !snap.recording && <button className="btn" onClick={p.onExport} title="Replay the clip from the start and save an annotated video with voice"><Clapperboard size={15} /> Export annotated clip</button>}
+        {snap.source === 'video' && live && !snap.recording && <button className="btn" onClick={p.onExport} title="Replay the clip from the start and save an annotated video with voice"><Clapperboard size={15} /> Export clip</button>}
         {live && (snap.recording
           ? <button className="btn btn-danger" onClick={p.onRecord}><Circle size={11} fill="currentColor" className="animate-pulse" /> {snap.exporting ? 'Exporting… stop' : 'Stop & save'}</button>
           : <button className="btn" onClick={p.onRecord} title="Record what's on screen"><Circle size={11} className="text-danger" fill="currentColor" /> Rec</button>)}
 
         <button className={`btn ${open ? 'btn-on' : ''}`} onClick={() => setOpen((o) => !o)}><SlidersHorizontal size={15} /></button>
 
-        <span className="chip border border-line text-muted" title={snap.preAnalysed ? 'Detections were computed on every 0.1 s frame before playback' : undefined}>
+        <span className="hidden 2xl:block"><span className="chip border border-line text-muted" title={snap.preAnalysed ? 'Detections were computed on every 0.1 s frame before playback' : undefined}>
           <span className="dot" style={{ background: !live ? '#5A626C' : snap.source === 'webcam' ? '#E5533D' : '#3FB97A' }} />
           {!live ? 'Standby' : snap.source === 'webcam' ? 'Live camera' : snap.preAnalysed ? 'Recorded · pre-analysed' : 'Recorded · live inference'}
-        </span>
+        </span></span>
       </div>
 
       <AnimatePresence>

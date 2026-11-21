@@ -13,16 +13,23 @@ import { ControlStrip } from './components/ControlStrip'
 import { IncidentModal } from './components/IncidentModal'
 import { Overview } from './components/Overview'
 import { Rail, type View } from './components/Rail'
+import { Landing } from './components/Landing'
+
+// Demo deep links, e.g. ?camera=beach&t=6.2&lang=ml  (also used to capture README screenshots with &shot=1)
+const LINK = new URLSearchParams(location.search)
+// Screenshot links start from a clean incident list.
+if (LINK.get('shot')) incidentStore.clear()
 
 const PREFS = 'edgeguard.prefs.v2'
 const initial: Settings = (() => {
   const base: Settings = {
     preset: PRESETS[0], language: 'en', audio: true, quality: 'accurate', crowdBoost: false, singlePerson: false,
-    mirrored: true, minScore: 0.4, breachConfirmMs: 700, unresolvedMs: 2500, warningDistance: 0.06, preAnalyse: true, stormMode: true,
+    mirrored: true, minScore: 0.4, breachConfirmMs: 700, unresolvedMs: 2500, warningDistance: 0.06, preAnalyse: true, stormMode: true, tone: 'friendly',
   }
   try {
     const saved = JSON.parse(localStorage.getItem(PREFS) ?? '{}')
-    return { ...base, ...saved, preset: PRESETS.find((p) => p.id === saved.presetId) ?? base.preset }
+    const lang = new URLSearchParams(location.search).get('lang')
+    return { ...base, ...saved, ...(lang && ['en', 'ml', 'hi', 'kn'].includes(lang) ? { language: lang } : {}), preset: PRESETS.find((p) => p.id === saved.presetId) ?? base.preset }
   } catch { return base }
 })()
 
@@ -39,9 +46,12 @@ export default function App() {
   const [openId, setOpenId] = useState<string | null>(null)
   const [rate, setRateState] = useState(1)
   const [toast, setToast] = useState<string | null>(null)
-  const [view, setView] = useState<View>('overview')
+  const [view, setView] = useState<View>(LINK.get('camera') ? 'console' : ((LINK.get('view') as View) || 'landing'))
   // A scene chosen on the landing page before the models finish loading waits for them.
-  const [pending, setPending] = useState<null | { kind: 'video'; preset: EnvironmentPreset } | { kind: 'webcam' }>(null)
+  const [pending, setPending] = useState<null | { kind: 'video'; preset: EnvironmentPreset; at?: number } | { kind: 'webcam' }>(() => {
+    const p = PRESETS.find((x) => x.id === LINK.get('camera'))
+    return p ? { kind: 'video', preset: p, at: LINK.get('t') ? Number(LINK.get('t')) : undefined } : null
+  })
   const incidents = useIncidents()
 
   useEffect(() => monitor.subscribe(setSnap), [])
@@ -77,8 +87,8 @@ export default function App() {
 
   // Warm the Sarvam cache for the active preset + language.
   useEffect(() => {
-    if (voice.backend === 'sarvam' && snap.running) void monitor.voice.prefetch(allWarnings(settings.preset, settings.language), settings.language)
-  }, [voice.backend, snap.running, settings.preset, settings.language])
+    if (voice.backend === 'sarvam' && snap.running) void monitor.voice.prefetch(allWarnings(settings.preset, settings.language, settings.tone), settings.language)
+  }, [voice.backend, snap.running, settings.preset, settings.language, settings.tone])
 
   const flash = (m: string) => { setToast(m); setTimeout(() => setToast(null), 3200) }
 
@@ -87,7 +97,7 @@ export default function App() {
     set({ preset: p })
     applyZone(p, 'video')
     setRateState(1)
-    void monitor.startVideo(p.video, p.video.split('/').pop()!, p.trim)
+    return monitor.startVideo(p.video, p.video.split('/').pop()!, p.trim)
   }
   const pickWebcam = () => { monitor.voice.unlock(); applyZone(settings.preset, 'webcam'); void monitor.startWebcam() }
   const openFile = (f: File) => {
@@ -144,7 +154,14 @@ export default function App() {
   useEffect(() => {
     if (!pending || snap.engine !== 'ready') return
     setPending(null)
-    if (pending.kind === 'video') pickVideo(pending.preset); else pickWebcam()
+    if (pending.kind === 'webcam') { pickWebcam(); return }
+    const at = pending.at
+    void pickVideo(pending.preset).then(async () => {
+      if (at !== undefined) await monitor.jumpTo(at)
+      if (LINK.get('edit')) setCalibrating(true)
+      if (LINK.get('open')) setOpenId(incidentStore.get()[0]?.id ?? null)
+      if (LINK.get('shot')) setTimeout(() => { (window as unknown as { __shotReady: boolean }).__shotReady = true }, 800)
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pending, snap.engine])
 
@@ -152,6 +169,15 @@ export default function App() {
 
   const rail = <Rail view={view} onNav={setView} engineOk={snap.engine === 'ready'} />
   const modal = <AnimatePresence>{open && <IncidentModal key={open.id} incident={open} onClose={() => setOpenId(null)} />}</AnimatePresence>
+  if (view === 'landing') {
+    return (
+      <Landing onOpen={(target) => {
+        if (target === 'overview') { setView('overview'); return }
+        const p = PRESETS.find((x) => x.id === target)!
+        monitor.voice.unlock(); set({ preset: p }); setView('console'); setPending({ kind: 'video', preset: p })
+      }} />
+    )
+  }
   if (view === 'overview') {
     return (
       <div className="flex h-full">

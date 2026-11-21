@@ -55,9 +55,10 @@ function drawZone(ctx: CanvasRenderingContext2D, z: SafetyZone, W: number, H: nu
   const pts = z.polygonCoordinates
   if (pts.length < 3) return
   const pulse = hot ? 0.5 + 0.5 * Math.sin(now / 140) : 0
+  const onBorder = (a: Pt, b: Pt) => (a.x <= 0.002 && b.x <= 0.002) || (a.x >= 0.998 && b.x >= 0.998) || (a.y <= 0.002 && b.y <= 0.002) || (a.y >= 0.998 && b.y >= 0.998)
   ctx.save()
   path(ctx, pts, W, H)
-  ctx.fillStyle = !storm ? 'rgba(242,201,76,0.05)' : hot ? `rgba(229,83,61,${0.16 + pulse * 0.08})` : 'rgba(229,83,61,0.08)'
+  ctx.fillStyle = !storm ? 'rgba(242,201,76,0.04)' : hot ? `rgba(229,83,61,${0.12 + pulse * 0.06})` : 'rgba(229,83,61,0.06)'
   ctx.fill()
   // Diagonal hazard hatching, clipped to the zone
   ctx.clip()
@@ -68,7 +69,6 @@ function drawZone(ctx: CanvasRenderingContext2D, z: SafetyZone, W: number, H: nu
   ctx.restore()
 
   // The yellow safety line: every polygon edge except those lying on the frame border.
-  const onBorder = (a: Pt, b: Pt) => (a.x <= 0.002 && b.x <= 0.002) || (a.x >= 0.998 && b.x >= 0.998) || (a.y <= 0.002 && b.y <= 0.002) || (a.y >= 0.998 && b.y >= 0.998)
   ctx.save()
   ctx.lineCap = 'round'
   for (let i = 0; i < pts.length; i++) {
@@ -82,8 +82,18 @@ function drawZone(ctx: CanvasRenderingContext2D, z: SafetyZone, W: number, H: nu
   ctx.restore()
 
   // Label at the top-most vertex
-  const top = pts.reduce((a, b) => (b.y < a.y ? b : a))
-  const lx = Math.min(Math.max(top.x * W, 12 * k), W - 220 * k), ly = Math.max(top.y * H - 10 * k, 64 * k)
+  // Label sits on the yellow line itself: the midpoint of its longest (non-border) segment.
+  let best: [Pt, Pt] = [pts[0], pts[1]], bestLen = -1
+  for (let i = 0; i < pts.length; i++) {
+    const a = pts[i], b = pts[(i + 1) % pts.length]
+    if (onBorder(a, b)) continue
+    const len = Math.hypot((b.x - a.x) * W, (b.y - a.y) * H)
+    if (len > bestLen) { bestLen = len; best = [a, b] }
+  }
+  // 85% of the way toward the right-hand end, where people are less likely to be standing.
+  const [l, r] = best[0].x <= best[1].x ? best : [best[1], best[0]]
+  const mx = (l.x + (r.x - l.x) * 0.85) * W, my = (l.y + (r.y - l.y) * 0.85) * H
+  const lx = Math.min(Math.max(mx - 300 * k, 12 * k), W - 330 * k), ly = Math.max(my - 10 * k, 64 * k)
   chip(ctx, storm ? `STORM · WATER CLOSED · ${z.label.toUpperCase()}` : `SAFETY LINE · ${z.label.toUpperCase()} · ADVISORY`, lx, ly, k, storm ? '#E5533D' : '#F2C94C', storm ? '#fff' : '#0B0D10')
 
   if (editing) {
@@ -216,6 +226,8 @@ function drawHud(ctx: CanvasRenderingContext2D, hud: HudInfo, W: number, H: numb
   g.addColorStop(0, 'rgba(0,0,0,0.6)'); g.addColorStop(1, 'rgba(0,0,0,0)')
   ctx.fillStyle = g
   ctx.fillRect(0, 0, W, 70 * k)
+  ctx.fillStyle = 'rgba(8,10,12,0.82)'
+  ctx.fillRect(0, 0, W, 56 * k)
   ctx.textBaseline = 'top'
   ctx.font = `600 ${13 * k}px "Inter Variable", system-ui, sans-serif`
   ctx.fillStyle = '#E6E8EB'

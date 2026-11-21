@@ -9,6 +9,9 @@ export type ClothingColor =
 export type ZoneState = 'safe' | 'caution' | 'breach' | 'unresolved' | 'resolved'
 
 /** en/ml use hand-written text; hi/kn are translated from English by Sarvam Translate on the server. */
+/** friendly: compliments the outfit to get attention; formal: plain public-address wording. */
+export type Tone = 'friendly' | 'formal'
+
 export type Language = 'en' | 'ml' | 'hi' | 'kn'
 
 /** One raw detection for the current frame (before tracking). */
@@ -82,5 +85,6 @@ export interface EnvironmentPreset {
   /** Optional usable range of the clip in seconds (e.g. to skip a camera zoom). */
   trim?: { start: number; end: number }
   warningMessages: Record<'en' | 'ml', { person: (color: string) => string; generic: string; group: string }>
+  friendlyMessages: Record<'en' | 'ml', { person: (color: string) => string; generic: string; group: string }>
   themeVariant: 'coastal' | 'transit' | 'backwater'
 }

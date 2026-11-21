@@ -117,7 +117,7 @@ export function IntelPanel({ snap, incidents, onOpen, onClear }: { snap: Snapsho
       </Card>
 
       <section className="card grid grid-cols-2 gap-x-3 gap-y-1 px-3.5 py-2.5 text-[11.5px] text-muted">
-        <span>{snap.preAnalysed ? 'Analysis' : 'Inference'} FPS</span><span className="num text-right text-ink">{snap.running ? snap.fps.toFixed(1) : '—'}</span>
+        <span>{snap.preAnalysed ? 'Detections' : 'Inference FPS'}</span><span className="num text-right text-ink">{!snap.running ? '—' : snap.preAnalysed ? 'pre-analysed' : snap.fps.toFixed(1)}</span>
         <span title="Feet inside zone until warning audio starts (includes the confirmation delay)">Alert latency</span><span className="num text-right text-ink">{snap.lastLatencyMs !== null ? `${(snap.lastLatencyMs / 1000).toFixed(2)} s` : '—'}</span>
         <span>Boundary events</span><span className="num text-right text-ink">{snap.boundaryEvents}</span>
         <span>Warnings spoken</span><span className="num text-right text-ink">{snap.warningsIssued}</span>

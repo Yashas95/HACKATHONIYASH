@@ -1,6 +1,6 @@
 import { LayoutGrid, MonitorPlay } from 'lucide-react'
 
-export type View = 'overview' | 'console'
+export type View = 'landing' | 'overview' | 'console'
 
 export function Logo({ size = 22 }: { size?: number }) {
   return (
@@ -21,7 +21,7 @@ export function Rail({ view, onNav, engineOk }: { view: View; onNav: (v: View) =
   )
   return (
     <nav className="flex w-[56px] shrink-0 flex-col items-center gap-1 border-r border-line bg-bg py-3">
-      <div className="mb-3"><Logo /></div>
+      <button className="mb-3" onClick={() => onNav('landing')} title="EdgeGuard AI home"><Logo /></button>
       {item('overview', LayoutGrid, 'Overview')}
       {item('console', MonitorPlay, 'Live view')}
       <div className="mt-auto" title={engineOk ? 'Vision models loaded' : 'Loading vision models'}>

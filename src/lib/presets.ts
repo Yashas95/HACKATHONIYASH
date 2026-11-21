@@ -1,4 +1,4 @@
-import type { ClothingColor, EnvironmentPreset, Language } from '../types'
+import type { ClothingColor, EnvironmentPreset, Language, Tone } from '../types'
 
 export const COLOR_WORDS: Record<'en' | 'ml', Record<Exclude<ClothingColor, 'unknown'>, string>> = {
   en: { red: 'red', blue: 'blue', green: 'green', yellow: 'yellow', black: 'black', white: 'white', grey: 'grey' },
@@ -7,6 +7,9 @@ export const COLOR_WORDS: Record<'en' | 'ml', Record<Exclude<ClothingColor, 'unk
     black: 'കറുത്ത', white: 'വെള്ള', grey: 'ചാരനിറത്തിലുള്ള',
   },
 }
+
+/** Friendly lines address the shirt, not the person: translations stay gender-neutral. */
+const cap = (w: string) => w.charAt(0).toUpperCase() + w.slice(1)
 
 export const COLOR_SWATCH: Record<ClothingColor, string> = {
   red: '#ef4444', blue: '#3b82f6', green: '#22c55e', yellow: '#facc15',
@@ -23,8 +26,20 @@ export const PRESETS: EnvironmentPreset[] = [
     video: '/videos/beach.mp4',
     themeVariant: 'coastal',
     // Camera on the sand looking out to sea: water is the upper band.
-    defaultZone: [{ x: 0, y: 0.4 }, { x: 1, y: 0.4 }, { x: 1, y: 0.825 }, { x: 0, y: 0.825 }],
+    defaultZone: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.825 }, { x: 0, y: 0.825 }],
     webcamZone: [{ x: 0.62, y: 0.5 }, { x: 1, y: 0.5 }, { x: 1, y: 1 }, { x: 0.62, y: 1 }],
+    friendlyMessages: {
+      en: {
+        person: (c) => `${cap(c)} shirt, what a lovely colour! But the sea is closed today. Please step back behind the yellow line.`,
+        generic: 'Hello there! The sea is closed today. Please step back behind the yellow line.',
+        group: 'Hello everyone! The sea is closed today. Please step back behind the yellow line.',
+      },
+      ml: {
+        person: (c) => `ഹലോ സുഹൃത്തേ, ${c} ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ.`,
+        generic: 'ഹലോ സുഹൃത്തേ! ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ.',
+        group: 'ഹലോ എല്ലാവരും! ഇന്ന് കടൽ അടച്ചിരിക്കുകയാണ്. ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറൂ.',
+      },
+    },
     warningMessages: {
       en: {
         person: (c) => `Attention please, you in the ${c} shirt. Storm warning: the sea is closed. Please step back behind the yellow line.`,
@@ -41,13 +56,25 @@ export const PRESETS: EnvironmentPreset[] = [
   {
     id: 'metro',
     name: 'Platform Safety',
-    location: 'Kochi Metro · Platform 1',
+    location: 'Bengaluru Metro · Platform 1',
     cameraName: 'CAM-04 Platform Edge',
     zoneLabel: 'Platform edge',
     video: '/videos/metro.mp4',
     themeVariant: 'transit',
-    defaultZone: [{ x: 0.5, y: 0.4 }, { x: 0.7, y: 0.4 }, { x: 0.445, y: 1 }, { x: 0, y: 1 }, { x: 0, y: 0.62 }],
+    defaultZone: [{ x: 0.87, y: 0 }, { x: 0.7, y: 0.4 }, { x: 0.445, y: 1 }, { x: 0, y: 1 }, { x: 0, y: 0 }],
     webcamZone: [{ x: 0.62, y: 0.5 }, { x: 1, y: 0.5 }, { x: 1, y: 1 }, { x: 0.62, y: 1 }],
+    friendlyMessages: {
+      en: {
+        person: (c) => `${cap(c)} shirt, what a great colour! But please step back behind the yellow line.`,
+        generic: 'Hello there! Please step back behind the yellow line.',
+        group: "Hello everyone! Let's all stay behind the yellow line.",
+      },
+      ml: {
+        person: (c) => `ഹലോ സുഹൃത്തേ, ${c} ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ.`,
+        generic: 'ഹലോ സുഹൃത്തേ! ദയവായി മഞ്ഞ വരയ്ക്ക് പിന്നിലേക്ക് മാറി നിൽക്കൂ.',
+        group: 'ഹലോ എല്ലാവരും! നമുക്ക് മഞ്ഞ വരയ്ക്ക് പിന്നിൽ നിൽക്കാം.',
+      },
+    },
     warningMessages: {
       en: {
         person: (c) => `Attention please, you in the ${c} shirt. Please step back behind the yellow line.`,
@@ -71,8 +98,20 @@ export const PRESETS: EnvironmentPreset[] = [
     trim: { start: 15.6, end: 18.3 }, // steady jetty shot; earlier part is a hand-held zoom
     themeVariant: 'backwater',
     // Fitted to the jetty clip: the water plus the last stretch of jetty before the stone lip.
-    defaultZone: [{ x: 0.05, y: 0.42 }, { x: 1, y: 0.42 }, { x: 1, y: 1 }, { x: 0.45, y: 1 }, { x: 0.4, y: 0.8 }, { x: 0.12, y: 0.66 }],
+    defaultZone: [{ x: 0.03, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0.45, y: 1 }, { x: 0.4, y: 0.8 }, { x: 0.12, y: 0.66 }, { x: 0.05, y: 0.42 }],
     webcamZone: [{ x: 0.62, y: 0.5 }, { x: 1, y: 0.5 }, { x: 1, y: 1 }, { x: 0.62, y: 1 }],
+    friendlyMessages: {
+      en: {
+        person: (c) => `${cap(c)} shirt, what a lovely colour! But please step away from the jetty edge.`,
+        generic: 'Hello there! Please step away from the jetty edge.',
+        group: 'Hello everyone! Please step away from the jetty edge.',
+      },
+      ml: {
+        person: (c) => `ഹലോ സുഹൃത്തേ, ${c} ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.`,
+        generic: 'ഹലോ സുഹൃത്തേ! ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.',
+        group: 'ഹലോ എല്ലാവരും! ദയവായി ജെട്ടിയുടെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.',
+      },
+    },
     warningMessages: {
       en: {
         person: (c) => `Attention please, you in the ${c} shirt. Please move away from the jetty edge.`,
@@ -97,7 +136,7 @@ PRESETS.splice(1, 0, {
   video: '/videos/beach-2.mp4',
   trim: { start: 17.5, end: 66.4 },
   // Elevated wide shot; sea on the LEFT. The yellow line sits a little inland of the foam (storm buffer).
-  defaultZone: [{ x: 0, y: 0.2 }, { x: 0.41, y: 0.2 }, { x: 0.44, y: 0.4 }, { x: 0.43, y: 0.58 }, { x: 0.39, y: 0.75 }, { x: 0.35, y: 1 }, { x: 0, y: 1 }],
+  defaultZone: [{ x: 0, y: 0 }, { x: 0.4, y: 0 }, { x: 0.41, y: 0.2 }, { x: 0.44, y: 0.4 }, { x: 0.43, y: 0.58 }, { x: 0.39, y: 0.75 }, { x: 0.35, y: 1 }, { x: 0, y: 1 }],
 })
 
 PRESETS.push({
@@ -109,8 +148,20 @@ PRESETS.push({
   video: '/videos/backwater-2.mp4',
   themeVariant: 'backwater',
   // Water is on the LEFT in this hand-held clip; boundary follows the average kerb line.
-  defaultZone: [{ x: 0, y: 0.3 }, { x: 1, y: 0.3 }, { x: 1, y: 0.4 }, { x: 0, y: 0.64 }],
+  defaultZone: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.4 }, { x: 0, y: 0.64 }],
   webcamZone: [{ x: 0.62, y: 0.5 }, { x: 1, y: 0.5 }, { x: 1, y: 1 }, { x: 0.62, y: 1 }],
+  friendlyMessages: {
+    en: {
+      person: (c) => `${cap(c)} shirt, what a lovely colour! But please step away from the water's edge.`,
+      generic: "Hello there! Please step back from the water's edge.",
+      group: "Hello everyone! Please step back from the water's edge.",
+    },
+    ml: {
+      person: (c) => `ഹലോ സുഹൃത്തേ, ${c} ഷർട്ട് നന്നായിട്ടുണ്ട്! പക്ഷേ ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.`,
+      generic: 'ഹലോ സുഹൃത്തേ! ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.',
+      group: 'ഹലോ എല്ലാവരും! ദയവായി വെള്ളത്തിന്റെ അരികിൽ നിന്ന് മാറി നിൽക്കൂ.',
+    },
+  },
   warningMessages: {
     en: {
       person: (c) => `Attention please, you in the ${c} shirt. Please step away from the water's edge.`,
@@ -135,17 +186,19 @@ export const LANGUAGES: { id: Language; label: string; name: string }[] = [
   { id: 'kn', label: 'ಕನ್ನಡ', name: 'Kannada' },
 ]
 
-export function warningText(p: EnvironmentPreset, lang: Language, color: ClothingColor): string {
+const messages = (p: EnvironmentPreset, l: 'en' | 'ml', tone: Tone) => (tone === 'friendly' ? p.friendlyMessages : p.warningMessages)[l]
+
+export function warningText(p: EnvironmentPreset, lang: Language, color: ClothingColor, tone: Tone = 'friendly'): string {
   const l = sourceLang(lang)
-  const m = p.warningMessages[l]
+  const m = messages(p, l, tone)
   return color === 'unknown' ? m.generic : m.person(COLOR_WORDS[l][color])
 }
 
-export const groupText = (p: EnvironmentPreset, lang: Language) => p.warningMessages[sourceLang(lang)].group
+export const groupText = (p: EnvironmentPreset, lang: Language, tone: Tone = 'friendly') => messages(p, sourceLang(lang), tone).group
 
 /** Every message a preset can speak, for pre-caching. */
-export function allWarnings(p: EnvironmentPreset, lang: Language): string[] {
+export function allWarnings(p: EnvironmentPreset, lang: Language, tone: Tone = 'friendly'): string[] {
   const l = sourceLang(lang)
-  const m = p.warningMessages[l]
+  const m = messages(p, l, tone)
   return [m.generic, m.group, ...Object.values(COLOR_WORDS[l]).map(m.person)]
 }

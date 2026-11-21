@@ -95,7 +95,7 @@ export function Overview({ engine, engineNote, voice, incidents, available, onSc
       <header className="sticky top-0 z-10 flex h-[56px] items-center gap-4 border-b border-line bg-bg/95 px-6 backdrop-blur">
         <div>
           <h1 className="text-[15px] font-semibold leading-tight">Overview</h1>
-          <div className="text-[11.5px] text-muted">Alappuzha coastal unit · {presets.length} cameras</div>
+          <div className="text-[11.5px] text-muted">Alappuzha beaches · Bengaluru metro · {presets.length} cameras</div>
         </div>
         <div className="ml-auto flex items-center gap-2">
           <span className="chip border border-line text-muted"><span className="dot" style={{ background: engine === 'ready' ? '#3FB97A' : engine === 'error' ? '#E5533D' : '#E0A43A' }} />
